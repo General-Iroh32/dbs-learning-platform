@@ -99,4 +99,13 @@ Das Projekt verwendet moderne React-Patterns:
 
 ## 📖 Lizenz
 
-Dieses Projekt ist für Bildungszwecke erstellt und steht allen TU Wien Studenten zur Verfügung.
+Dieses Projekt steht unter der **MIT License** und ist für Bildungszwecke erstellt. Es steht allen TU Wien Studenten und der allgemeinen Öffentlichkeit zur Verfügung.
+
+**Lizenzdetails:** Siehe [LICENSE](LICENSE) Datei für vollständige Informationen.
+
+### 🎓 Bildungsnutzung
+
+- ✅ **Kostenlose Nutzung** für alle Studenten
+- ✅ **Modifikation erlaubt** für eigene Lernzwecke
+- ✅ **Weitergabe erlaubt** an Kommilitonen
+- ✅ **Kommerzielle Nutzung** nach MIT License möglich
