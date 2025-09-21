@@ -80,24 +80,64 @@ export const rmConcepts: ConceptCard[] = [
 
 export const erConcepts: ConceptCard[] = [
   {
-    title: 'Entitätstypen',
-    description: 'Repräsentiert eine Klasse von Objekten mit gemeinsamen Eigenschaften (z.B. \'Student\'). Dargestellt als Rechteck.',
+    title: 'Entitätstypen (Entity Types)',
+    description: 'Repräsentiert eine Klasse von Objekten mit gemeinsamen Eigenschaften (z.B. \'Student\', \'Kurs\', \'Professor\'). Dargestellt als Rechteck. Jeder Entitätstyp hat eine Menge von Instanzen (Entities).',
     icon: 'Box'
   },
   {
     title: 'Attribute',
-    description: 'Beschreiben Eigenschaften eines Entitätstyps (z.B. \'Matrikelnummer\'). Dargestellt als Ovale, Schlüsselattribute sind unterstrichen.',
+    description: 'Beschreiben Eigenschaften eines Entitätstyps (z.B. \'Matrikelnummer\', \'Name\', \'Titel\'). Dargestellt als Ovale. Schlüsselattribute sind unterstrichen. Unterscheidung: einfach/zusammengesetzt, einwertig/mehrwertig, gespeichert/abgeleitet.',
     icon: 'List'
   },
   {
-    title: 'Beziehungstypen',
-    description: 'Beschreibt eine Verknüpfung zwischen Entitätstyps (z.B. \'Student\' belegt \'Kurs\'). Dargestellt als Raute.',
+    title: 'Beziehungstypen (Relationship Types)',
+    description: 'Beschreibt eine Verknüpfung zwischen Entitätstypen (z.B. \'Student\' belegt \'Kurs\'). Dargestellt als Raute. Kann Attribute haben. Stelligkeit: binär (2), ternär (3), n-stellig.',
     icon: 'Link'
   },
   {
-    title: 'Kardinalitäten',
-    description: 'Definieren, wie viele Instanzen an einer Beziehung teilnehmen können (1:1, 1:N, M:N). Die (min, max)-Notation präzisiert die Teilnahme.',
+    title: 'Kardinalitäten und Funktionalitäten',
+    description: 'Chen-Notation: 1:1, 1:N, N:M. [min,max]-Notation: [0,1], [1,1], [0,*], [1,*]. Definieren, wie viele Instanzen an einer Beziehung teilnehmen können.',
     icon: 'SortAsc'
+  },
+  {
+    title: 'Primärschlüssel',
+    description: 'Eindeutig identifiziert jede Instanz eines Entitätstyps. Kann einfach oder zusammengesetzt sein. Wird durch Unterstreichen markiert. Alternative Schlüsselkandidaten möglich.',
+    icon: 'Key'
+  },
+  {
+    title: 'Participation Constraints',
+    description: 'Total: Jede Instanz muss an der Beziehung teilnehmen (doppelte Linie). Partiell: Instanzen können optional teilnehmen (einfache Linie).',
+    icon: 'Users'
+  },
+  {
+    title: 'Schwache Entitätstypen',
+    description: 'Abhängig von einem starken Entitätstyp. Identifizierung nur in Kombination mit dem starken Entitätstyp möglich. Teilschlüssel gestrichelt unterstrichen.',
+    icon: 'Box'
+  },
+  {
+    title: 'ISA-Beziehungstypen',
+    description: 'Modelliert Spezialisierung und Generalisierung (Vererbung). Dargestellt als Dreieck mit "ISA". Kardinalität immer [1,1] zu [0,1].',
+    icon: 'GitBranch'
+  },
+  {
+    title: 'Rollen (Roles)',
+    description: 'Beschreiben die Funktion eines Entitätstyps in einer Beziehung. Besonders wichtig bei rekursiven Beziehungen (z.B. "Mentor" und "Mentee").',
+    icon: 'User'
+  },
+  {
+    title: 'Beziehungsattribute',
+    description: 'Attribute, die zu einer Beziehung gehören, nicht zu einem Entitätstyp. Beispiel: "Note" bei der Beziehung "Student belegt Kurs".',
+    icon: 'FileText'
+  },
+  {
+    title: 'Rekursive Beziehungen',
+    description: 'Ein Entitätstyp ist mit sich selbst verbunden. Beispiel: "Person" ist "Mentor" von "Person". Rollennamen sind hier besonders wichtig.',
+    icon: 'RefreshCw'
+  },
+  {
+    title: 'N-äre Beziehungen',
+    description: 'Beziehungen zwischen mehr als zwei Entitätstypen. Beispiel: "Professor" bewertet "Student" in "Kurs". Komplexer als binäre Beziehungen.',
+    icon: 'Network'
   }
 ];
 

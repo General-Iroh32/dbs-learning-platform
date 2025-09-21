@@ -6,6 +6,12 @@ import { PDFViewer } from './components/PDFViewer';
 import { LearningPath } from './components/LearningPath';
 import { RMExercise } from './components/exercises/RMExercise';
 import { ERExercise } from './components/exercises/ERExercise';
+import { ERComprehensiveExercise } from './components/exercises/ERComprehensiveExercise';
+import { ERToRelationalMapping } from './components/exercises/ERToRelationalMapping';
+import { ERPraxisExercise } from './components/exercises/ERPraxisExercise';
+import { ERPruefungExercise } from './components/exercises/ERPruefungExercise';
+import { ERWeakEntityExercise } from './components/exercises/ERWeakEntityExercise';
+import { ERISAExercise } from './components/exercises/ERISAExercise';
 import { RAExercise } from './components/exercises/RAExercise';
 import { RAPraxisExercise } from './components/exercises/RAPraxisExercise';
 import { RAPruefungExercise } from './components/exercises/RAPruefungExercise';
@@ -14,7 +20,23 @@ import { RAOperatorTreeExercise } from './components/exercises/RAOperatorTreeExe
 import { RAComplexExercise } from './components/exercises/RAComplexExercise';
 import { NormExercise } from './components/exercises/NormExercise';
 import { PhysExercise } from './components/exercises/PhysExercise';
+import { PhysConceptBasics } from './components/exercises/PhysConceptBasics';
+import { PhysDragDropExercise } from './components/exercises/PhysDragDropExercise';
+import { PhysComprehensiveExercise } from './components/exercises/PhysComprehensiveExercise';
+import { PhysPraxisExercise } from './components/exercises/PhysPraxisExercise';
+import { PhysPruefungExercise } from './components/exercises/PhysPruefungExercise';
+import { PhysSpecializedExercise } from './components/exercises/PhysSpecializedExercise';
+import { PhysInteractiveTools } from './components/exercises/PhysInteractiveTools';
+import { PhysQuiz } from './components/exercises/PhysQuiz';
 import { TransExercise } from './components/exercises/TransExercise';
+import { TransConceptBasics } from './components/exercises/TransConceptBasics';
+import { TransDragDropExercise } from './components/exercises/TransDragDropExercise';
+import { TransComprehensiveExercise } from './components/exercises/TransComprehensiveExercise';
+import { TransPraxisExercise } from './components/exercises/TransPraxisExercise';
+import { TransPruefungExercise } from './components/exercises/TransPruefungExercise';
+import { TransSpecializedExercise } from './components/exercises/TransSpecializedExercise';
+import { TransInteractiveTools } from './components/exercises/TransInteractiveTools';
+import { TransQuiz } from './components/exercises/TransQuiz';
 import { SQLExercise } from './components/exercises/SQLExercise';
 import { ProgressiveLearningSystem } from './components/ProgressiveLearningSystem';
 import { AnomalyExercise } from './components/exercises/AnomalyExercise';
@@ -110,46 +132,46 @@ function App() {
       );
     }
 
-        if (currentPage === 'test-preparation') {
-          return <TestPreparationMode />;
-        }
+    if (currentPage === 'test-preparation') {
+      return <TestPreparationMode />;
+    }
 
-        // Direct routing for DBS9 Anfrageoptimierung
-        if (currentPage === 'dbs9-progressive-learning') {
-          return <ProgressiveDBS9LearningSystem />;
-        }
+    // Direct routing for DBS9 Anfrageoptimierung
+    if (currentPage === 'dbs9-progressive-learning') {
+      return <ProgressiveDBS9LearningSystem />;
+    }
 
-        if (currentPage === 'query-execution-exercise') {
-          return <QueryExecutionExercise />;
-        }
+    if (currentPage === 'query-execution-exercise') {
+      return <QueryExecutionExercise />;
+    }
 
-        if (currentPage === 'logical-optimization-exercise') {
-          return <LogicalOptimizationExercise />;
-        }
+    if (currentPage === 'logical-optimization-exercise') {
+      return <LogicalOptimizationExercise />;
+    }
 
-        if (currentPage === 'join-algorithms-exercise') {
-          return <JoinAlgorithmsExercise />;
-        }
+    if (currentPage === 'join-algorithms-exercise') {
+      return <JoinAlgorithmsExercise />;
+    }
 
-        if (currentPage === 'cost-optimization-exercise') {
-          return <CostOptimizationExercise />;
-        }
+    if (currentPage === 'cost-optimization-exercise') {
+      return <CostOptimizationExercise />;
+    }
 
-        if (currentPage === 'dbs9-test-preparation') {
-          return <DBS9TestPreparationMode />;
-        }
+    if (currentPage === 'dbs9-test-preparation') {
+      return <DBS9TestPreparationMode />;
+    }
 
-        if (currentPage === 'dbs9-quiz') {
-          return (
-            <Quiz
-              quizData={dbs9QuizData}
-              title="Quiz: Anfrageoptimierung (DBS9)"
-              description="Überprüfe dein Wissen über SQL-Ausführung, logische Optimierung, Join-Algorithmen und kostenbasierte Optimierung."
-            />
-          );
-        }
+    if (currentPage === 'dbs9-quiz') {
+      return (
+        <Quiz
+          quizData={dbs9QuizData}
+          title="Quiz: Anfrageoptimierung (DBS9)"
+          description="Überprüfe dein Wissen über SQL-Ausführung, logische Optimierung, Join-Algorithmen und kostenbasierte Optimierung."
+        />
+      );
+    }
 
-    const pageType = currentPage.split('-')[1] || 'basics';
+    const pageType = currentPage.includes('-') ? currentPage.substring(currentPage.indexOf('-') + 1) : 'basics';
     const topic = currentPage.split('-')[0];
 
     switch (topic) {
@@ -186,7 +208,19 @@ function App() {
           );
         } else if (pageType === 'uebung') {
           return <ERExercise />;
-        } else if (pageType === 'quiz') {
+          } else if (pageType === 'comprehensive') {
+            return <ERComprehensiveExercise />;
+          } else if (pageType === 'praxis') {
+            return <ERPraxisExercise />;
+          } else if (pageType === 'pruefung') {
+            return <ERPruefungExercise />;
+          } else if (pageType === 'weak-entity') {
+            return <ERWeakEntityExercise />;
+          } else if (pageType === 'isa') {
+            return <ERISAExercise />;
+          } else if (pageType === 'relational-mapping') {
+            return <ERToRelationalMapping />;
+          } else if (pageType === 'quiz') {
           return (
             <Quiz
               quizData={erQuizData}
@@ -260,16 +294,24 @@ function App() {
               description="Hier geht es darum, wie Daten auf Speichermedien organisiert werden, um schnellen Zugriff zu ermöglichen."
             />
           );
+        } else if (pageType === 'concept-basics') {
+          return <PhysConceptBasics />;
+        } else if (pageType === 'drag-drop') {
+          return <PhysDragDropExercise />;
+        } else if (pageType === 'comprehensive') {
+          return <PhysComprehensiveExercise />;
+        } else if (pageType === 'praxis') {
+          return <PhysPraxisExercise />;
+        } else if (pageType === 'pruefung') {
+          return <PhysPruefungExercise />;
+        } else if (pageType === 'specialized') {
+          return <PhysSpecializedExercise />;
+        } else if (pageType === 'tools') {
+          return <PhysInteractiveTools />;
         } else if (pageType === 'uebung') {
           return <PhysExercise />;
         } else if (pageType === 'quiz') {
-          return (
-            <Quiz
-              quizData={physQuizData}
-              title="Quiz: Physischer DB-Entwurf"
-              description="Überprüfe dein Wissen."
-            />
-          );
+          return <PhysQuiz />;
         }
         break;
 
@@ -282,16 +324,24 @@ function App() {
                 description="Transaktionen bündeln Operationen zu einer logischen Einheit, um die Datenbank konsistent zu halten."
               />
             );
+          } else if (pageType === 'concept-basics') {
+            return <TransConceptBasics />;
+          } else if (pageType === 'drag-drop') {
+            return <TransDragDropExercise />;
+          } else if (pageType === 'comprehensive') {
+            return <TransComprehensiveExercise />;
+          } else if (pageType === 'praxis') {
+            return <TransPraxisExercise />;
+          } else if (pageType === 'pruefung') {
+            return <TransPruefungExercise />;
+          } else if (pageType === 'specialized') {
+            return <TransSpecializedExercise />;
+          } else if (pageType === 'tools') {
+            return <TransInteractiveTools />;
           } else if (pageType === 'uebung') {
             return <TransExercise />;
           } else if (pageType === 'quiz') {
-            return (
-              <Quiz
-                quizData={transQuizData}
-                title="Quiz: Transaktionen"
-                description="Überprüfe dein Wissen."
-              />
-            );
+            return <TransQuiz />;
           }
           break;
 
