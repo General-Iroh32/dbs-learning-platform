@@ -160,11 +160,5 @@ export const pdfDocuments: PDFDocument[] = [
     title: 'DBS-8',
     filename: 'DBS-8.pdf',
     description: 'Datenbanksysteme Vorlesung 8'
-  },
-  {
-    id: 'test-1',
-    title: 'Test 1',
-    filename: 'TU_Wien-Datenbanksysteme_VU_(Hose)_-_SS2024_Test_1 (1) (1).pdf',
-    description: 'Datenbanksysteme Test 1'
   }
 ];
