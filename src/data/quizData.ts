@@ -112,6 +112,58 @@ export const rmQuizData: QuizData = {
 export const erQuizData: QuizData = {
   questions: [
     {
+      question: "Was ist ein Entitätstyp im ER-Modell?",
+      hint: "Überlegen Sie, was Entitätstypen repräsentieren.",
+      answerOptions: [
+        {
+          text: "Eine Klasse von Objekten mit gemeinsamen Eigenschaften",
+          rationale: "Richtig! Entitätstypen repräsentieren Klassen von Objekten (z.B. 'Student', 'Kurs') mit gemeinsamen Eigenschaften.",
+          isCorrect: true
+        },
+        {
+          text: "Ein einzelnes Objekt der realen Welt",
+          rationale: "Falsch! Das wäre eine Entität (Instanz), nicht ein Entitätstyp.",
+          isCorrect: false
+        },
+        {
+          text: "Eine Eigenschaft eines Objekts",
+          rationale: "Falsch! Das wäre ein Attribut.",
+          isCorrect: false
+        },
+        {
+          text: "Eine Verbindung zwischen Objekten",
+          rationale: "Falsch! Das wäre ein Beziehungstyp.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
+      question: "Welche Kardinalität beschreibt eine 1:N Beziehung?",
+      hint: "Überlegen Sie, was 1:N bedeutet.",
+      answerOptions: [
+        {
+          text: "Ein Entitätstyp kann mit einem anderen Entitätstyp in einer Beziehung stehen, der andere kann mit vielen in Beziehung stehen",
+          rationale: "Richtig! 1:N bedeutet, dass ein Entitätstyp (1) mit vielen Instanzen eines anderen Entitätstyps (N) in Beziehung stehen kann.",
+          isCorrect: true
+        },
+        {
+          text: "Beide Entitätstypen können mit vielen Instanzen des anderen in Beziehung stehen",
+          rationale: "Falsch! Das wäre eine N:M Beziehung.",
+          isCorrect: false
+        },
+        {
+          text: "Jeder Entitätstyp kann nur mit einer Instanz des anderen in Beziehung stehen",
+          rationale: "Falsch! Das wäre eine 1:1 Beziehung.",
+          isCorrect: false
+        },
+        {
+          text: "Ein Entitätstyp kann mit genau zwei Instanzen des anderen in Beziehung stehen",
+          rationale: "Falsch! 1:N bedeutet nicht 1:2, sondern 1 zu beliebig vielen.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
       question: "Welcher der folgenden Entitätstypen sollte als schwacher Entitätstyp modelliert werden?",
       hint: "Schwache Entitätstypen haben keinen eigenen Primärschlüssel und sind von einem starken Entitätstyp abhängig.",
       answerOptions: [
