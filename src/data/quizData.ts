@@ -902,3 +902,138 @@ export const sqlQuizData: QuizData = {
     }
   ]
 };
+
+export const designTheoryQuizData: QuizData = {
+  questions: [
+    {
+      question: "Welche Art von Anomalie tritt auf, wenn ein Professor umzieht und sein Büro in mehreren Tupeln geändert werden muss?",
+      hint: "Überlegen Sie, was passiert, wenn eine Information an mehreren Stellen geändert werden muss.",
+      answerOptions: [
+        {
+          text: "Einfügeanomalie",
+          rationale: "Falsch! Eine Einfügeanomalie tritt auf, wenn neue Daten nicht eingefügt werden können.",
+          isCorrect: false
+        },
+        {
+          text: "Änderungsanomalie",
+          rationale: "Richtig! Eine Änderungsanomalie tritt auf, wenn eine Information an mehreren Stellen geändert werden muss, was zu Inkonsistenzen führen kann.",
+          isCorrect: true
+        },
+        {
+          text: "Löschanomalie",
+          rationale: "Falsch! Eine Löschanomalie tritt auf, wenn das Löschen von Daten unbeabsichtigt andere Informationen entfernt.",
+          isCorrect: false
+        },
+        {
+          text: "Redundanzanomalie",
+          rationale: "Falsch! Redundanz ist die Ursache von Anomalien, aber keine eigene Anomalieart.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
+      question: "Was bedeutet die funktionale Abhängigkeit {A} → {B}?",
+      hint: "Überlegen Sie, was es bedeutet, wenn A B funktional bestimmt.",
+      answerOptions: [
+        {
+          text: "A und B sind identisch",
+          rationale: "Falsch! Das wäre eine triviale Abhängigkeit, aber nicht die Definition von A → B.",
+          isCorrect: false
+        },
+        {
+          text: "A eindeutig B bestimmt",
+          rationale: "Richtig! A → B bedeutet, dass für jeden Wert von A genau ein Wert von B existiert.",
+          isCorrect: true
+        },
+        {
+          text: "B eindeutig A bestimmt",
+          rationale: "Falsch! Das wäre B → A, nicht A → B.",
+          isCorrect: false
+        },
+        {
+          text: "A und B sind unabhängig",
+          rationale: "Falsch! Eine funktionale Abhängigkeit zeigt gerade eine Abhängigkeit zwischen A und B.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
+      question: "Welche Normalform wird verletzt, wenn ein Nicht-Schlüsselattribut nur von einem Teil eines zusammengesetzten Schlüssels abhängt?",
+      hint: "Überlegen Sie, welche Normalform partielle Abhängigkeiten verbietet.",
+      answerOptions: [
+        {
+          text: "Erste Normalform (1NF)",
+          rationale: "Falsch! 1NF befasst sich nur mit der Atomarität der Attributwerte.",
+          isCorrect: false
+        },
+        {
+          text: "Zweite Normalform (2NF)",
+          rationale: "Richtig! 2NF verbietet partielle Abhängigkeiten, bei denen ein Nicht-Schlüsselattribut nur von einem Teil des Schlüssels abhängt.",
+          isCorrect: true
+        },
+        {
+          text: "Dritte Normalform (3NF)",
+          rationale: "Falsch! 3NF verbietet transitive Abhängigkeiten, nicht partielle Abhängigkeiten.",
+          isCorrect: false
+        },
+        {
+          text: "Boyce-Codd-Normalform (BCNF)",
+          rationale: "Falsch! BCNF ist strenger als 2NF, aber 2NF ist die spezifische Normalform, die partielle Abhängigkeiten verbietet.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
+      question: "Eine Zerlegung ist verlustfrei, wenn:",
+      hint: "Überlegen Sie, was es bedeutet, dass eine Zerlegung verlustfrei ist.",
+      answerOptions: [
+        {
+          text: "Alle Attribute in den neuen Relationen vorkommen",
+          rationale: "Falsch! Das ist nur eine notwendige, aber nicht hinreichende Bedingung.",
+          isCorrect: false
+        },
+        {
+          text: "Die ursprüngliche Relation durch Join rekonstruierbar ist",
+          rationale: "Richtig! Eine verlustfreie Zerlegung ermöglicht es, die ursprüngliche Relation durch einen Join der neuen Relationen exakt zu rekonstruieren.",
+          isCorrect: true
+        },
+        {
+          text: "Keine redundanten FDs existieren",
+          rationale: "Falsch! Das bezieht sich auf die kanonische Überdeckung, nicht auf Verlustfreiheit.",
+          isCorrect: false
+        },
+        {
+          text: "Alle FDs in den neuen Relationen überprüfbar sind",
+          rationale: "Falsch! Das ist die Definition von Abhängigkeitsbewahrung, nicht Verlustfreiheit.",
+          isCorrect: false
+        }
+      ]
+    },
+    {
+      question: "Welches Armstrong-Axiom wird verwendet, um aus {A} → {B} und {B} → {C} die FD {A} → {C} abzuleiten?",
+      hint: "Überlegen Sie, welches Axiom eine 'Kettenreaktion' zwischen Abhängigkeiten beschreibt.",
+      answerOptions: [
+        {
+          text: "Reflexivität",
+          rationale: "Falsch! Reflexivität besagt, dass β ⊆ α impliziert α → β.",
+          isCorrect: false
+        },
+        {
+          text: "Erweiterung",
+          rationale: "Falsch! Erweiterung besagt, dass α → β impliziert αγ → βγ.",
+          isCorrect: false
+        },
+        {
+          text: "Transitivität",
+          rationale: "Richtig! Transitivität besagt: Wenn α → β und β → γ, dann α → γ.",
+          isCorrect: true
+        },
+        {
+          text: "Vereinigung",
+          rationale: "Falsch! Vereinigung ist ein abgeleitetes Axiom, nicht eines der drei Armstrong-Axiome.",
+          isCorrect: false
+        }
+      ]
+    }
+  ]
+};

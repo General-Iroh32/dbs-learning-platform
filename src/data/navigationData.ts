@@ -61,6 +61,22 @@ export const navigationItems: NavigationItem[] = [
     ]
   },
   {
+    id: 'entwurfstheorie',
+    label: 'Entwurfstheorie (DBS5)',
+    icon: 'Settings',
+    subItems: [
+      { id: 'design-theory-basics', label: 'Grundlagen', type: 'basics' },
+      { id: 'progressive-learning', label: 'Progressives Lernen', type: 'basics' },
+      { id: 'anomaly-exercise', label: 'Anomalien-Übung', type: 'exercise' },
+      { id: 'fd-exercise', label: 'Funktionale Abhängigkeiten', type: 'exercise' },
+      { id: 'attribute-closure', label: 'Attributhülle', type: 'exercise' },
+      { id: 'normalization-exercise', label: 'Normalformen-Übung', type: 'exercise' },
+      { id: 'decomposition-exercise', label: 'Zerlegungs-Übung', type: 'exercise' },
+      { id: 'design-theory-quiz', label: 'Entwurfstheorie-Quiz', type: 'quiz' },
+      { id: 'test-preparation', label: 'Testvorbereitung', type: 'quiz' }
+    ]
+  },
+  {
     id: 'physisch',
     label: 'Physischer Entwurf',
     icon: 'HardDrive',
@@ -90,6 +106,20 @@ export const navigationItems: NavigationItem[] = [
       { id: 'trans-specialized', label: 'Spezialisierte Übungen', type: 'exercise' },
       { id: 'trans-tools', label: 'Interaktive Tools', type: 'exercise' },
       { id: 'trans-quiz', label: 'Wissens-Quiz', type: 'quiz' }
+    ]
+  },
+  {
+    id: 'anfrageoptimierung',
+    label: 'Anfrageoptimierung (DBS9)',
+    icon: 'Zap',
+    subItems: [
+      { id: 'dbs9-progressive-learning', label: 'Progressives Lernen', type: 'basics' },
+      { id: 'query-execution-exercise', label: 'SQL-Ausführungsreihenfolge', type: 'exercise' },
+      { id: 'logical-optimization-exercise', label: 'Logische Optimierung', type: 'exercise' },
+      { id: 'join-algorithms-exercise', label: 'Join-Algorithmen', type: 'exercise' },
+      { id: 'cost-optimization-exercise', label: 'Kostenbasierte Optimierung', type: 'exercise' },
+      { id: 'dbs9-quiz', label: 'DBS9-Quiz', type: 'quiz' },
+      { id: 'dbs9-test-preparation', label: 'Testvorbereitung', type: 'quiz' }
     ]
   }
 ];

@@ -38,6 +38,19 @@ import { TransSpecializedExercise } from './components/exercises/TransSpecialize
 import { TransInteractiveTools } from './components/exercises/TransInteractiveTools';
 import { TransQuiz } from './components/exercises/TransQuiz';
 import { SQLExercise } from './components/exercises/SQLExercise';
+import { ProgressiveLearningSystem } from './components/ProgressiveLearningSystem';
+import { AnomalyExercise } from './components/exercises/AnomalyExercise';
+import { FunctionalDependencyExercise } from './components/exercises/FunctionalDependencyExercise';
+import { AttributeClosureExercise } from './components/exercises/AttributeClosureExercise';
+import { NormalizationExercise } from './components/exercises/NormalizationExercise';
+import { DecompositionExercise } from './components/exercises/DecompositionExercise';
+import { TestPreparationMode } from './components/TestPreparationMode';
+import { ProgressiveDBS9LearningSystem } from './components/ProgressiveDBS9LearningSystem';
+import { QueryExecutionExercise } from './components/exercises/QueryExecutionExercise';
+import { LogicalOptimizationExercise } from './components/exercises/LogicalOptimizationExercise';
+import { JoinAlgorithmsExercise } from './components/exercises/JoinAlgorithmsExercise';
+import { CostOptimizationExercise } from './components/exercises/CostOptimizationExercise';
+import { DBS9TestPreparationMode } from './components/DBS9TestPreparationMode';
 import { 
   rmConcepts,
   erConcepts, 
@@ -45,15 +58,18 @@ import {
   normConcepts, 
   physConcepts, 
   transConcepts,
-  sqlConcepts
+  sqlConcepts,
+  designTheoryConcepts
 } from './data/conceptData';
 import { 
   rmQuizData,
   erQuizData, 
   raQuizData, 
   normQuizData, 
-  sqlQuizData
+  sqlQuizData,
+  designTheoryQuizData
 } from './data/quizData';
+import { dbs9QuizData } from './data/dbs9QuizData';
 import { pdfDocuments } from './data/navigationData';
 
 function App() {
@@ -66,6 +82,90 @@ function App() {
   const renderContent = () => {
     if (currentPage === 'lernpfad') {
       return <LearningPath onNavigate={handleNavigate} />;
+    }
+
+    // Direct routing for design theory
+    if (currentPage === 'design-theory-basics') {
+      return (
+        <ConceptBasics
+          concepts={designTheoryConcepts}
+          title="Grundlagen: Entwurfstheorie"
+          description="Lerne die wichtigsten Konzepte der Datenbankentwurfstheorie kennen."
+        />
+      );
+    }
+
+    if (currentPage === 'progressive-learning') {
+      return <ProgressiveLearningSystem />;
+    }
+
+    if (currentPage === 'anomaly-exercise') {
+      return <AnomalyExercise />;
+    }
+
+    if (currentPage === 'fd-exercise') {
+      return <FunctionalDependencyExercise />;
+    }
+
+    if (currentPage === 'attribute-closure') {
+      return <AttributeClosureExercise />;
+    }
+
+    if (currentPage === 'normalization-exercise') {
+      return <NormalizationExercise />;
+    }
+
+    if (currentPage === 'decomposition-exercise') {
+      return <DecompositionExercise />;
+    }
+
+    if (currentPage === 'design-theory-quiz') {
+      return (
+        <Quiz
+          quizData={designTheoryQuizData}
+          title="Quiz: Entwurfstheorie"
+          description="Überprüfe dein Wissen über Anomalien, funktionale Abhängigkeiten, Normalformen und Zerlegungen."
+        />
+      );
+    }
+
+    if (currentPage === 'test-preparation') {
+      return <TestPreparationMode />;
+    }
+
+    // Direct routing for DBS9 Anfrageoptimierung
+    if (currentPage === 'dbs9-progressive-learning') {
+      return <ProgressiveDBS9LearningSystem />;
+    }
+
+    if (currentPage === 'query-execution-exercise') {
+      return <QueryExecutionExercise />;
+    }
+
+    if (currentPage === 'logical-optimization-exercise') {
+      return <LogicalOptimizationExercise />;
+    }
+
+    if (currentPage === 'join-algorithms-exercise') {
+      return <JoinAlgorithmsExercise />;
+    }
+
+    if (currentPage === 'cost-optimization-exercise') {
+      return <CostOptimizationExercise />;
+    }
+
+    if (currentPage === 'dbs9-test-preparation') {
+      return <DBS9TestPreparationMode />;
+    }
+
+    if (currentPage === 'dbs9-quiz') {
+      return (
+        <Quiz
+          quizData={dbs9QuizData}
+          title="Quiz: Anfrageoptimierung (DBS9)"
+          description="Überprüfe dein Wissen über SQL-Ausführung, logische Optimierung, Join-Algorithmen und kostenbasierte Optimierung."
+        />
+      );
     }
 
     const pageType = currentPage.includes('-') ? currentPage.substring(currentPage.indexOf('-') + 1) : 'basics';
@@ -263,6 +363,7 @@ function App() {
             );
           }
           break;
+
 
       case 'pdfs':
         return (
