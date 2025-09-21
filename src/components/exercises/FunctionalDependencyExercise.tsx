@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 
-interface FD {
-  left: string;
-  right: string;
-}
-
 export const FunctionalDependencyExercise: React.FC = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [step, setStep] = useState(0);
 
   const exercises = [
     {

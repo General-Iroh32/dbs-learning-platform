@@ -297,7 +297,6 @@ export const TransQuiz: React.FC = () => {
     // Performance Questions
     {
       id: 'performance-1',
-      title: 'Isolation vs. Performance Tradeoff',
       question: 'Welche Strategie bietet den besten Kompromiss zwischen Isolation und Performance?',
       options: [
         'SERIALIZABLE für alle Transaktionen',

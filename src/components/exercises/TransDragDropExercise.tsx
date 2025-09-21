@@ -14,7 +14,7 @@ import {
 interface DragItem {
   id: string;
   content: string;
-  type: 'operation' | 'state' | 'property' | 'concept';
+  type: 'operation' | 'state' | 'property' | 'concept' | 'scenario';
   category: string;
   correctPosition?: string;
 }

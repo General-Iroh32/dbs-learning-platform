@@ -451,7 +451,7 @@ export const ERPruefungExercise: React.FC = () => {
                   const isCorrect = userAnswer === question.correctAnswer;
                   return (
                     <div key={question.id} className="flex items-center justify-between p-2 rounded">
-                      <span className="text-sm">Frage {index + 1}: {question.title}</span>
+                      <span className="text-sm">Frage {index + 1}: {question.question}</span>
                       <div className="flex items-center space-x-2">
                         <span className="text-sm text-gray-600">{question.points} Punkte</span>
                         {isCorrect ? (

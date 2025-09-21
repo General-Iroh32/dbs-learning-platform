@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
 
-interface FD {
-  left: string;
-  right: string;
-}
-
-interface Relation {
-  name: string;
-  attributes: string[];
-}
-
 export const DecompositionExercise: React.FC = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [selectedDecomposition, setSelectedDecomposition] = useState<number | null>(null);

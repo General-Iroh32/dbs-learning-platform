@@ -162,7 +162,7 @@ export const LogicalOptimizationExercise: React.FC = () => {
               
               <h4 className="font-medium mb-2">Statistiken:</h4>
               <div className="space-y-2">
-                {Object.entries(current.statistics).map(([table, stats]) => (
+                {current.statistics && Object.entries(current.statistics).map(([table, stats]) => (
                   <div key={table} className="bg-gray-50 p-2 rounded text-sm">
                     <strong>Tabelle {table}:</strong> {stats.tuples} Tupel, Selektivität: {stats.selectivity}
                   </div>
@@ -207,7 +207,7 @@ export const LogicalOptimizationExercise: React.FC = () => {
 
           {currentExercise === 1 && (
             <div className="space-y-3">
-              {current.options.map((option) => (
+              {current.options?.map((option) => (
                 <button
                   key={option.id}
                   onClick={() => handleRuleSelect(option.id)}

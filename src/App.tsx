@@ -59,16 +59,13 @@ import {
   physConcepts, 
   transConcepts,
   sqlConcepts,
-  designTheoryConcepts,
-  dbs9Concepts
+  designTheoryConcepts
 } from './data/conceptData';
 import { 
   rmQuizData,
   erQuizData, 
   raQuizData, 
   normQuizData, 
-  physQuizData, 
-  transQuizData,
   sqlQuizData,
   designTheoryQuizData
 } from './data/quizData';
