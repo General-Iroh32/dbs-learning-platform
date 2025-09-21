@@ -83,16 +83,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
         { id: 'ra-pruefung', label: 'Prüfungsvorbereitung', type: 'quiz' }
       ]
     },
-    {
-      id: 'normalisierung',
-      label: 'Normalisierung',
-      icon: 'CheckSquare',
-      subItems: [
-        { id: 'norm-grundlagen', label: 'Grundlagen', type: 'basics' },
-        { id: 'norm-uebung', label: 'Interaktive Übung', type: 'exercise' },
-        { id: 'norm-quiz', label: 'Wissens-Quiz', type: 'quiz' }
-      ]
-    },
         {
           id: 'entwurfstheorie',
           label: 'Entwurfstheorie (DBS5)',
