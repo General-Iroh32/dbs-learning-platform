@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.concept-card {
+  @apply bg-gray-50 border-l-4 border-blue-500 transition-all duration-200 ease-in-out;
+}
+
+.concept-card:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+.nav-item {
+  @apply cursor-pointer transition-all duration-200 border-l-4 border-transparent;
+}
+
+.nav-item:hover {
+  @apply bg-gray-100 border-l-blue-500;
+}
+
+.nav-item.active {
+  @apply bg-blue-50 text-blue-900 font-semibold border-l-blue-500;
+}
+
+.nav-sub-item {
+  @apply pl-12;
+}
+
+.quiz-option, .exercise-option {
+  @apply cursor-pointer border-2 border-transparent;
+}
+
+.quiz-option.selected, .exercise-option.selected {
+  @apply border-blue-500 bg-blue-50;
+}
+
+.quiz-option.correct, .exercise-option.correct {
+  @apply bg-green-100 border-green-500;
+}
+
+.quiz-option.incorrect, .exercise-option.incorrect {
+  @apply bg-red-100 border-red-500;
+}
+
+.rationale {
+  @apply text-sm p-2 mt-1 rounded;
+}
+
+.rationale.correct {
+  @apply bg-green-100;
+}
+
+.rationale.incorrect {
+  @apply bg-red-100;
+}
+
+.drop-zone {
+  @apply border-2 border-dashed border-gray-400 min-h-16 min-w-24 transition-colors duration-200;
+}
+
+.drop-zone.drag-over {
+  @apply bg-blue-50;
+}
+
+.draggable {
+  @apply cursor-grab select-none;
+}
+
+.draggable.dragging {
+  @apply opacity-50;
+}
+
+.user-selection.correct {
+  @apply border-green-500 bg-green-100;
+}
+
+.user-selection.incorrect {
+  @apply border-red-500 bg-red-100;
+}
