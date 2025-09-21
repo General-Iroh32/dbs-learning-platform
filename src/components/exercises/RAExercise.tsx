@@ -52,7 +52,7 @@ export const RAExercise: React.FC = () => {
     if (correctCount === totalCount) {
       setResult('Perfekt, die Anfrage ist korrekt!');
     } else {
-      setResult(`Du hast ${correctCount} von ${totalCount} Bausteinen korrekt platziert. Versuche es nochmal!`);
+      setResult(`Du hast ${correctCount} von ${totalCount} Bausteinen korrekt platziert.`);
     }
   };
 

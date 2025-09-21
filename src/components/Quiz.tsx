@@ -77,7 +77,7 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
             onClick={handleNextQuestion}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Nochmal versuchen
+            Weiter
           </button>
         </div>
       </div>
