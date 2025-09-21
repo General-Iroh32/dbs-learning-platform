@@ -338,3 +338,56 @@ export const designTheoryConcepts: ConceptCard[] = [
     icon: 'Database'
   }
 ];
+
+export const dbs9Concepts: ConceptCard[] = [
+  {
+    title: 'SQL-Ausführungsreihenfolge',
+    description: 'SQL ist deklarativ - die geschriebene Reihenfolge (SELECT, FROM, WHERE...) unterscheidet sich von der Ausführungsreihenfolge (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY).',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Logische Anfrageoptimierung',
+    description: 'Heuristische Optimierung basierend auf relationaler Algebra. Ziel: Reduzierung der Größe von Zwischenergebnissen durch Transformationsregeln.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Transformationsregeln',
+    description: 'Äquivalenzerhaltende Regeln: Selektionen nach unten verschieben, Projektionen früh ausführen, Joins kommutativ und assoziativ.',
+    icon: 'Database'
+  },
+  {
+    title: 'Nested Loop Join',
+    description: 'Brute-Force-Strategie: Jedes Tupel der äußeren Relation wird mit jedem Tupel der inneren Relation verglichen. Kosten: b_outer + (ceil(b_outer / (nB - 2)) * b_inner).',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Hash Join',
+    description: 'Beide Relationen werden mit Hashfunktion partitioniert, dann werden passende Buckets gejoint. Kosten: ca. 3 * (b1 + b2). Optimal für große Tabellen.',
+    icon: 'Database'
+  },
+  {
+    title: 'Sort-Merge Join',
+    description: 'Beide Relationen werden auf Join-Attributen sortiert und dann wie ein Reißverschluss durchlaufen. Kosten: b1 + b2 (wenn bereits sortiert).',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Index Nested Loop Join',
+    description: 'Nutzt einen Index für die innere Relation, um den vollständigen Scan zu vermeiden. Optimal für Punktabfragen mit Index.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Kostenbasierte Optimierung',
+    description: 'Wählt den besten Ausführungsplan basierend auf Kostenmodell und Statistiken. Berücksichtigt I/O-Kosten, CPU-Zeit und Selektivität.',
+    icon: 'Database'
+  },
+  {
+    title: 'Selektivität',
+    description: 'Anteil der Tupel, die eine Bedingung erfüllen. Wichtig für Kostenschätzung: σ = |σ_c(R)| / |R|. Niedrige Selektivität = wenige Tupel = effizient.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'PostgreSQL EXPLAIN',
+    description: 'EXPLAIN zeigt den geplanten Ausführungsplan, EXPLAIN ANALYZE führt die Anfrage aus und zeigt reale Ausführungszeiten. Wichtig für Performance-Tuning.',
+    icon: 'Workflow'
+  }
+];
