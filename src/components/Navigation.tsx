@@ -95,6 +95,13 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
       icon: 'HardDrive',
       subItems: [
         { id: 'phys-grundlagen', label: 'Grundlagen', type: 'basics' },
+        { id: 'phys-concept-basics', label: 'Konzeptkarten', type: 'exercise' },
+        { id: 'phys-drag-drop', label: 'Drag & Drop', type: 'exercise' },
+        { id: 'phys-comprehensive', label: 'Umfassende Übungen', type: 'exercise' },
+        { id: 'phys-praxis', label: 'Praxisfälle', type: 'exercise' },
+        { id: 'phys-pruefung', label: 'Prüfungssimulation', type: 'exercise' },
+        { id: 'phys-specialized', label: 'Spezialisierte Übungen', type: 'exercise' },
+        { id: 'phys-tools', label: 'Interaktive Tools', type: 'exercise' },
         { id: 'phys-uebung', label: 'Interaktive Übung', type: 'exercise' },
         { id: 'phys-quiz', label: 'Wissens-Quiz', type: 'quiz' }
       ]
