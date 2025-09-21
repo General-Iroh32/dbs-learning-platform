@@ -51,16 +51,6 @@ export const navigationItems: NavigationItem[] = [
     ]
   },
   {
-    id: 'normalisierung',
-    label: 'Normalisierung',
-    icon: 'Tasks',
-    subItems: [
-      { id: 'norm-grundlagen', label: 'Grundlagen', type: 'basics' },
-      { id: 'norm-uebung', label: 'Interaktive Übung', type: 'exercise' },
-      { id: 'norm-quiz', label: 'Wissens-Quiz', type: 'quiz' }
-    ]
-  },
-  {
     id: 'entwurfstheorie',
     label: 'Entwurfstheorie (DBS5)',
     icon: 'Settings',

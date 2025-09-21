@@ -319,6 +319,72 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
       completed: completedSteps.has('trans-quiz')
     },
     {
+      id: 'design-theory-basics',
+      title: 'Entwurfstheorie - Grundlagen',
+      description: 'Lerne die theoretischen Grundlagen des Datenbankentwurfs kennen.',
+      type: 'theory',
+      estimatedTime: '45 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-quiz'],
+      pageId: 'design-theory-basics',
+      completed: completedSteps.has('design-theory-basics')
+    },
+    {
+      id: 'anomaly-exercise',
+      title: 'Entwurfstheorie - Anomalien-Übung',
+      description: 'Verstehe Änderungs-, Einfüge- und Löschanomalien durch interaktive Übungen.',
+      type: 'practice',
+      estimatedTime: '30 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['design-theory-basics'],
+      pageId: 'anomaly-exercise',
+      completed: completedSteps.has('anomaly-exercise')
+    },
+    {
+      id: 'fd-exercise',
+      title: 'Entwurfstheorie - Funktionale Abhängigkeiten',
+      description: 'Lerne funktionale Abhängigkeiten und Armstrong-Axiome kennen.',
+      type: 'practice',
+      estimatedTime: '35 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['anomaly-exercise'],
+      pageId: 'fd-exercise',
+      completed: completedSteps.has('fd-exercise')
+    },
+    {
+      id: 'normalization-exercise',
+      title: 'Entwurfstheorie - Normalformen-Übung',
+      description: 'Übe 1NF, 2NF, 3NF und BCNF mit interaktiven Beispielen.',
+      type: 'practice',
+      estimatedTime: '40 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['fd-exercise'],
+      pageId: 'normalization-exercise',
+      completed: completedSteps.has('normalization-exercise')
+    },
+    {
+      id: 'decomposition-exercise',
+      title: 'Entwurfstheorie - Zerlegungs-Übung',
+      description: 'Lerne verlustfreie und abhängigkeitsbewahrende Zerlegungen.',
+      type: 'practice',
+      estimatedTime: '35 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['normalization-exercise'],
+      pageId: 'decomposition-exercise',
+      completed: completedSteps.has('decomposition-exercise')
+    },
+    {
+      id: 'design-theory-quiz',
+      title: 'Entwurfstheorie - Quiz',
+      description: 'Teste dein Wissen über Anomalien, FDs, Normalformen und Zerlegungen.',
+      type: 'quiz',
+      estimatedTime: '25 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['decomposition-exercise'],
+      pageId: 'design-theory-quiz',
+      completed: completedSteps.has('design-theory-quiz')
+    },
+    {
       id: 'phys-basics',
       title: 'Physischer Entwurf - Grundlagen',
       description: 'Lerne die Grundlagen des physischen Datenbankentwurfs und der Speicherstrukturen.',
@@ -427,6 +493,61 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
       prerequisites: ['phys-exam'],
       pageId: 'phys-quiz',
       completed: completedSteps.has('phys-quiz')
+    },
+    {
+      id: 'dbs9-progressive-learning',
+      title: 'Anfrageoptimierung - Progressives Lernen',
+      description: 'Strukturierter Lernweg durch SQL-Ausführung, Join-Algorithmen und Optimierung.',
+      type: 'theory',
+      estimatedTime: '60 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['phys-quiz'],
+      pageId: 'dbs9-progressive-learning',
+      completed: completedSteps.has('dbs9-progressive-learning')
+    },
+    {
+      id: 'query-execution-exercise',
+      title: 'Anfrageoptimierung - SQL-Ausführungsreihenfolge',
+      description: 'Verstehe die tatsächliche Ausführungsreihenfolge von SQL-Anfragen.',
+      type: 'practice',
+      estimatedTime: '30 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['dbs9-progressive-learning'],
+      pageId: 'query-execution-exercise',
+      completed: completedSteps.has('query-execution-exercise')
+    },
+    {
+      id: 'join-algorithms-exercise',
+      title: 'Anfrageoptimierung - Join-Algorithmen',
+      description: 'Lerne Nested Loop, Hash Join, Sort-Merge und Index Nested Loop Join.',
+      type: 'practice',
+      estimatedTime: '40 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['query-execution-exercise'],
+      pageId: 'join-algorithms-exercise',
+      completed: completedSteps.has('join-algorithms-exercise')
+    },
+    {
+      id: 'cost-optimization-exercise',
+      title: 'Anfrageoptimierung - Kostenbasierte Optimierung',
+      description: 'Verstehe Kostenmodelle und wähle optimale Ausführungspläne.',
+      type: 'practice',
+      estimatedTime: '35 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['join-algorithms-exercise'],
+      pageId: 'cost-optimization-exercise',
+      completed: completedSteps.has('cost-optimization-exercise')
+    },
+    {
+      id: 'dbs9-quiz',
+      title: 'Anfrageoptimierung - Quiz',
+      description: 'Teste dein Wissen über SQL-Ausführung, Join-Algorithmen und Optimierung.',
+      type: 'quiz',
+      estimatedTime: '25 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['cost-optimization-exercise'],
+      pageId: 'dbs9-quiz',
+      completed: completedSteps.has('dbs9-quiz')
     }
   ];
 
