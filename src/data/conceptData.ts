@@ -285,3 +285,56 @@ export const sqlConcepts: ConceptCard[] = [
     icon: 'Network'
   }
 ];
+
+export const designTheoryConcepts: ConceptCard[] = [
+  {
+    title: 'Anomalien',
+    description: 'Probleme in schlecht entworfenen Datenbanken: Änderungsanomalien (Inkonsistenzen bei Updates), Einfügeanomalien (können keine neuen Daten einfügen), Löschanomalien (verlieren wichtige Daten beim Löschen).',
+    icon: 'Database'
+  },
+  {
+    title: 'Funktionale Abhängigkeiten',
+    description: 'Eine FD α → β bedeutet, dass α die Werte von β eindeutig bestimmt. Sie sind semantische Konsistenzbedingungen, die sich aus der Anwendungslogik ergeben.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Armstrong-Axiome',
+    description: 'Drei Grundregeln zur Ableitung neuer FDs: Reflexivität (β ⊆ α → α → β), Erweiterung (α → β → αγ → βγ), Transitivität (α → β ∧ β → γ → α → γ).',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Attributhülle',
+    description: 'Die Attributhülle α+ enthält alle Attribute, die von α funktional bestimmt werden. Wird mit einem iterativen Algorithmus berechnet.',
+    icon: 'Database'
+  },
+  {
+    title: 'Erste Normalform (1NF)',
+    description: 'Alle Attribute müssen atomar sein (nicht weiter zerlegbar). Keine Listen, Mengen oder zusammengesetzte Werte in den Zellen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Zweite Normalform (2NF)',
+    description: '1NF + keine partiellen Abhängigkeiten. Jedes Nicht-Primattribut muss voll funktional von jedem Kandidatenschlüssel abhängen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Dritte Normalform (3NF)',
+    description: '2NF + keine transitiven Abhängigkeiten. Für jede FD α → B muss α ein Superschlüssel sein oder B ein Primattribut.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Boyce-Codd-Normalform (BCNF)',
+    description: 'Strengere Version der 3NF. Für jede nicht-triviale FD α → B muss α ein Superschlüssel sein. Kann Abhängigkeitsbewahrung verletzen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Verlustlose Zerlegung',
+    description: 'Eine Zerlegung ist verlustfrei, wenn die ursprüngliche Relation durch einen Join der neuen Relationen exakt rekonstruierbar ist.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Abhängigkeitsbewahrung',
+    description: 'Alle ursprünglichen FDs müssen in den neuen Relationen überprüfbar sein, ohne die Tabellen zu joinen.',
+    icon: 'Database'
+  }
+];

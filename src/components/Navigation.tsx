@@ -9,7 +9,8 @@ import {
   ChevronRight,
   FileText,
   Database,
-  Map
+  Map,
+  Settings
 } from 'lucide-react';
 import type { NavigationItem } from '../types';
 
@@ -26,7 +27,8 @@ const iconMap = {
   ArrowLeftRight,
   FileText,
   Database,
-  Map
+  Map,
+  Settings
 };
 
 export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }) => {
@@ -81,6 +83,22 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
         { id: 'norm-grundlagen', label: 'Grundlagen', type: 'basics' },
         { id: 'norm-uebung', label: 'Interaktive Übung', type: 'exercise' },
         { id: 'norm-quiz', label: 'Wissens-Quiz', type: 'quiz' }
+      ]
+    },
+    {
+      id: 'entwurfstheorie',
+      label: 'Entwurfstheorie (DBS5)',
+      icon: 'Settings',
+      subItems: [
+        { id: 'design-theory-basics', label: 'Grundlagen', type: 'basics' },
+        { id: 'progressive-learning', label: 'Progressives Lernen', type: 'basics' },
+        { id: 'anomaly-exercise', label: 'Anomalien-Übung', type: 'exercise' },
+        { id: 'fd-exercise', label: 'Funktionale Abhängigkeiten', type: 'exercise' },
+        { id: 'attribute-closure', label: 'Attributhülle', type: 'exercise' },
+        { id: 'normalization-exercise', label: 'Normalformen-Übung', type: 'exercise' },
+        { id: 'decomposition-exercise', label: 'Zerlegungs-Übung', type: 'exercise' },
+        { id: 'design-theory-quiz', label: 'Entwurfstheorie-Quiz', type: 'quiz' },
+        { id: 'test-preparation', label: 'Testvorbereitung', type: 'quiz' }
       ]
     },
     {

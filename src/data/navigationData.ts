@@ -55,6 +55,22 @@ export const navigationItems: NavigationItem[] = [
     ]
   },
   {
+    id: 'entwurfstheorie',
+    label: 'Entwurfstheorie (DBS5)',
+    icon: 'Settings',
+    subItems: [
+      { id: 'design-theory-basics', label: 'Grundlagen', type: 'basics' },
+      { id: 'progressive-learning', label: 'Progressives Lernen', type: 'basics' },
+      { id: 'anomaly-exercise', label: 'Anomalien-Übung', type: 'exercise' },
+      { id: 'fd-exercise', label: 'Funktionale Abhängigkeiten', type: 'exercise' },
+      { id: 'attribute-closure', label: 'Attributhülle', type: 'exercise' },
+      { id: 'normalization-exercise', label: 'Normalformen-Übung', type: 'exercise' },
+      { id: 'decomposition-exercise', label: 'Zerlegungs-Übung', type: 'exercise' },
+      { id: 'design-theory-quiz', label: 'Entwurfstheorie-Quiz', type: 'quiz' },
+      { id: 'test-preparation', label: 'Testvorbereitung', type: 'quiz' }
+    ]
+  },
+  {
     id: 'physisch',
     label: 'Physischer Entwurf',
     icon: 'HardDrive',

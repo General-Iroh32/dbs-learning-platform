@@ -16,6 +16,13 @@ import { NormExercise } from './components/exercises/NormExercise';
 import { PhysExercise } from './components/exercises/PhysExercise';
 import { TransExercise } from './components/exercises/TransExercise';
 import { SQLExercise } from './components/exercises/SQLExercise';
+import { ProgressiveLearningSystem } from './components/ProgressiveLearningSystem';
+import { AnomalyExercise } from './components/exercises/AnomalyExercise';
+import { FunctionalDependencyExercise } from './components/exercises/FunctionalDependencyExercise';
+import { AttributeClosureExercise } from './components/exercises/AttributeClosureExercise';
+import { NormalizationExercise } from './components/exercises/NormalizationExercise';
+import { DecompositionExercise } from './components/exercises/DecompositionExercise';
+import { TestPreparationMode } from './components/TestPreparationMode';
 import { 
   rmConcepts,
   erConcepts, 
@@ -23,7 +30,8 @@ import {
   normConcepts, 
   physConcepts, 
   transConcepts,
-  sqlConcepts
+  sqlConcepts,
+  designTheoryConcepts
 } from './data/conceptData';
 import { 
   rmQuizData,
@@ -32,7 +40,8 @@ import {
   normQuizData, 
   physQuizData, 
   transQuizData,
-  sqlQuizData
+  sqlQuizData,
+  designTheoryQuizData
 } from './data/quizData';
 import { pdfDocuments } from './data/navigationData';
 
@@ -46,6 +55,55 @@ function App() {
   const renderContent = () => {
     if (currentPage === 'lernpfad') {
       return <LearningPath onNavigate={handleNavigate} />;
+    }
+
+    // Direct routing for design theory
+    if (currentPage === 'design-theory-basics') {
+      return (
+        <ConceptBasics
+          concepts={designTheoryConcepts}
+          title="Grundlagen: Entwurfstheorie"
+          description="Lerne die wichtigsten Konzepte der Datenbankentwurfstheorie kennen."
+        />
+      );
+    }
+
+    if (currentPage === 'progressive-learning') {
+      return <ProgressiveLearningSystem />;
+    }
+
+    if (currentPage === 'anomaly-exercise') {
+      return <AnomalyExercise />;
+    }
+
+    if (currentPage === 'fd-exercise') {
+      return <FunctionalDependencyExercise />;
+    }
+
+    if (currentPage === 'attribute-closure') {
+      return <AttributeClosureExercise />;
+    }
+
+    if (currentPage === 'normalization-exercise') {
+      return <NormalizationExercise />;
+    }
+
+    if (currentPage === 'decomposition-exercise') {
+      return <DecompositionExercise />;
+    }
+
+    if (currentPage === 'design-theory-quiz') {
+      return (
+        <Quiz
+          quizData={designTheoryQuizData}
+          title="Quiz: Entwurfstheorie"
+          description="Überprüfe dein Wissen über Anomalien, funktionale Abhängigkeiten, Normalformen und Zerlegungen."
+        />
+      );
+    }
+
+    if (currentPage === 'test-preparation') {
+      return <TestPreparationMode />;
     }
 
     const pageType = currentPage.split('-')[1] || 'basics';
@@ -215,6 +273,7 @@ function App() {
             );
           }
           break;
+
 
       case 'pdfs':
         return (
