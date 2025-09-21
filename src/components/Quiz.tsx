@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lightbulb } from 'lucide-react';
 import type { QuizData, AnswerOption } from '../types';
 
@@ -9,14 +9,38 @@ interface QuizProps {
 }
 
 export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
+  const [shuffledQuestions, setShuffledQuestions] = useState(quizData.questions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showRationale, setShowRationale] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  const currentQuestion = quizData.questions[currentQuestionIndex];
-  const isLastQuestion = currentQuestionIndex === quizData.questions.length - 1;
+  // Shuffle questions and answer options on component mount
+  useEffect(() => {
+    const shuffleArray = <T,>(array: T[]): T[] => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    // Shuffle questions
+    const shuffledQuestions = shuffleArray(quizData.questions);
+    
+    // Shuffle answer options for each question
+    const questionsWithShuffledAnswers = shuffledQuestions.map(question => ({
+      ...question,
+      answerOptions: shuffleArray(question.answerOptions)
+    }));
+
+    setShuffledQuestions(questionsWithShuffledAnswers);
+  }, [quizData]);
+
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === shuffledQuestions.length - 1;
 
   const handleAnswerSelect = (answerIndex: number) => {
     if (isAnswered) return;
@@ -71,7 +95,7 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-4">Quiz beendet!</h2>
           <p className="text-lg mb-6">
-            Du hast {score} von {quizData.questions.length} Fragen richtig beantwortet.
+            Du hast {score} von {shuffledQuestions.length} Fragen richtig beantwortet.
           </p>
           <button
             onClick={handleNextQuestion}
@@ -91,7 +115,7 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
       <div className="bg-white p-6 rounded-lg shadow-md">
         <div className="mb-4">
           <p className="text-sm text-gray-500">
-            Frage {currentQuestionIndex + 1} von {quizData.questions.length}
+            Frage {currentQuestionIndex + 1} von {shuffledQuestions.length}
           </p>
           <h2 className="text-xl font-semibold mt-1">{currentQuestion.question}</h2>
           <p className="text-sm text-blue-500 mt-2 italic flex items-center">

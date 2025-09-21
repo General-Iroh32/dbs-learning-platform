@@ -124,7 +124,22 @@ export const TestPreparationMode: React.FC = () => {
   }, [timeLeft, testStarted]);
 
   const startTest = () => {
-    setQuestions(testQuestions.sort(() => Math.random() - 0.5));
+    // Shuffle questions
+    const shuffledQuestions = testQuestions.sort(() => Math.random() - 0.5);
+    
+    // Shuffle answer options for multiple-choice and scenario questions
+    const questionsWithShuffledOptions = shuffledQuestions.map(question => {
+      if (question.type === 'multiple-choice' || question.type === 'scenario') {
+        const shuffledOptions = question.options ? [...question.options].sort(() => Math.random() - 0.5) : [];
+        return {
+          ...question,
+          options: shuffledOptions
+        };
+      }
+      return question;
+    });
+    
+    setQuestions(questionsWithShuffledOptions);
     setTestStarted(true);
     setTimeLeft(60 * 60);
   };
