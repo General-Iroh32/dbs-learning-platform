@@ -67,14 +67,80 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
     },
     {
       id: 'er-practice',
-      title: 'ER-Modellierung - Übung',
+      title: 'ER-Modellierung - Einfache Übung',
       description: 'Erstelle ER-Diagramme mit Drag & Drop.',
       type: 'practice',
-      estimatedTime: '30 Min',
+      estimatedTime: '20 Min',
       difficulty: 'Mittel',
       prerequisites: ['er-basics'],
       pageId: 'er-uebung',
       completed: completedSteps.has('er-practice')
+    },
+        {
+          id: 'er-comprehensive',
+          title: 'ER-Modellierung - Umfassende Übungen',
+          description: 'Progressive Übungen von Grundkonzepten bis zu komplexen ER-Diagrammen.',
+          type: 'practice',
+          estimatedTime: '60 Min',
+          difficulty: 'Mittel',
+          prerequisites: ['er-practice'],
+          pageId: 'er-comprehensive',
+          completed: completedSteps.has('er-comprehensive')
+        },
+        {
+          id: 'er-praxis',
+          title: 'ER-Modellierung - Praxisfälle',
+          description: 'Löse realistische ER-Modellierungsaufgaben mit Multiple Choice.',
+          type: 'practice',
+          estimatedTime: '45 Min',
+          difficulty: 'Mittel',
+          prerequisites: ['er-comprehensive'],
+          pageId: 'er-praxis',
+          completed: completedSteps.has('er-praxis')
+        },
+        {
+          id: 'er-weak-entity',
+          title: 'ER-Modellierung - Schwache Entitäten',
+          description: 'Spezielle Übungen zu schwachen Entitätstypen und identifizierenden Beziehungen.',
+          type: 'practice',
+          estimatedTime: '30 Min',
+          difficulty: 'Mittel',
+          prerequisites: ['er-praxis'],
+          pageId: 'er-weak-entity',
+          completed: completedSteps.has('er-weak-entity')
+        },
+        {
+          id: 'er-isa',
+          title: 'ER-Modellierung - ISA-Beziehungen',
+          description: 'Lerne Spezialisierung und Generalisierung im ER-Modell.',
+          type: 'practice',
+          estimatedTime: '30 Min',
+          difficulty: 'Mittel',
+          prerequisites: ['er-weak-entity'],
+          pageId: 'er-isa',
+          completed: completedSteps.has('er-isa')
+        },
+        {
+          id: 'er-pruefung',
+          title: 'ER-Modellierung - Prüfungssimulation',
+          description: 'Teste dein Wissen in einer realistischen Prüfungsumgebung mit Zeitlimit.',
+          type: 'exam',
+          estimatedTime: '45 Min',
+          difficulty: 'Schwer',
+          prerequisites: ['er-isa'],
+          pageId: 'er-pruefung',
+          completed: completedSteps.has('er-pruefung')
+        },
+    {
+      id: 'er-relational-mapping',
+      title: 'ER zu Relationale Abbildung',
+      description: 'Lerne, wie man ER-Diagramme in relationale Schemata umwandelt.',
+      type: 'practice',
+      estimatedTime: '40 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['er-comprehensive'],
+      pageId: 'er-relational-mapping',
+      completed: completedSteps.has('er-relational-mapping')
     },
     {
       id: 'er-quiz',
@@ -141,17 +207,231 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
       prerequisites: ['ra-praxis'],
       pageId: 'ra-pruefung',
       completed: completedSteps.has('ra-exam')
+    },
+    {
+      id: 'trans-basics',
+      title: 'Transaktionen - Grundlagen',
+      description: 'Lerne die ACID-Eigenschaften und Grundkonzepte von Transaktionen.',
+      type: 'theory',
+      estimatedTime: '45 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['ra-exam'],
+      pageId: 'trans-grundlagen',
+      completed: completedSteps.has('trans-basics')
+    },
+    {
+      id: 'trans-concepts',
+      title: 'Transaktionen - Konzeptkarten',
+      description: 'Interaktive Karten zu ACID, Isolation Levels und Concurrency-Problemen.',
+      type: 'theory',
+      estimatedTime: '30 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-basics'],
+      pageId: 'trans-concept-basics',
+      completed: completedSteps.has('trans-concepts')
+    },
+    {
+      id: 'trans-drag-drop',
+      title: 'Transaktionen - Drag & Drop',
+      description: 'Einfache Zuordnungsübungen zu ACID-Eigenschaften und Transaktions-Zuständen.',
+      type: 'practice',
+      estimatedTime: '25 Min',
+      difficulty: 'Einfach',
+      prerequisites: ['trans-concepts'],
+      pageId: 'trans-drag-drop',
+      completed: completedSteps.has('trans-drag-drop')
+    },
+    {
+      id: 'trans-comprehensive',
+      title: 'Transaktionen - Umfassende Übungen',
+      description: 'Progressive Übungen von Grundkonzepten bis zu erweiterten Transaktions-Themen.',
+      type: 'practice',
+      estimatedTime: '60 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-drag-drop'],
+      pageId: 'trans-comprehensive',
+      completed: completedSteps.has('trans-comprehensive')
+    },
+    {
+      id: 'trans-praxis',
+      title: 'Transaktionen - Praxisfälle',
+      description: 'Realistische Szenarien aus Banking, E-Commerce und anderen Bereichen.',
+      type: 'practice',
+      estimatedTime: '45 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-comprehensive'],
+      pageId: 'trans-praxis',
+      completed: completedSteps.has('trans-praxis')
+    },
+    {
+      id: 'trans-specialized',
+      title: 'Transaktionen - Spezialisierte Übungen',
+      description: 'Deep Dive in ACID, Isolation Levels, Concurrency Control und Recovery.',
+      type: 'practice',
+      estimatedTime: '50 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['trans-praxis'],
+      pageId: 'trans-specialized',
+      completed: completedSteps.has('trans-specialized')
+    },
+    {
+      id: 'trans-tools',
+      title: 'Transaktionen - Interaktive Tools',
+      description: 'Visualisiere Transaktionskonzepte mit interaktiven Tools und Simulationen.',
+      type: 'practice',
+      estimatedTime: '40 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-specialized'],
+      pageId: 'trans-tools',
+      completed: completedSteps.has('trans-tools')
+    },
+    {
+      id: 'trans-uebung',
+      title: 'Transaktionen - Interaktive Übung',
+      description: 'Klassische interaktive Übungen zu Transaktionskonzepten.',
+      type: 'practice',
+      estimatedTime: '35 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-tools'],
+      pageId: 'trans-uebung',
+      completed: completedSteps.has('trans-uebung')
+    },
+    {
+      id: 'trans-exam',
+      title: 'Transaktionen - Prüfungssimulation',
+      description: 'Teste dein Wissen in einer realistischen Prüfungsumgebung mit Zeitlimit.',
+      type: 'exam',
+      estimatedTime: '30 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['trans-uebung'],
+      pageId: 'trans-pruefung',
+      completed: completedSteps.has('trans-exam')
+    },
+    {
+      id: 'trans-quiz',
+      title: 'Transaktionen - Wissens-Quiz',
+      description: 'Abschließendes Quiz mit detaillierter Auswertung und Empfehlungen.',
+      type: 'quiz',
+      estimatedTime: '20 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-exam'],
+      pageId: 'trans-quiz',
+      completed: completedSteps.has('trans-quiz')
+    },
+    {
+      id: 'phys-basics',
+      title: 'Physischer Entwurf - Grundlagen',
+      description: 'Lerne die Grundlagen des physischen Datenbankentwurfs und der Speicherstrukturen.',
+      type: 'theory',
+      estimatedTime: '45 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['trans-quiz'],
+      pageId: 'phys-grundlagen',
+      completed: completedSteps.has('phys-basics')
+    },
+    {
+      id: 'phys-concepts',
+      title: 'Physischer Entwurf - Konzeptkarten',
+      description: 'Interaktive Karten zu Indexierung, Speicherstrukturen und Performance-Optimierung.',
+      type: 'theory',
+      estimatedTime: '30 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-basics'],
+      pageId: 'phys-concept-basics',
+      completed: completedSteps.has('phys-concepts')
+    },
+    {
+      id: 'phys-drag-drop',
+      title: 'Physischer Entwurf - Drag & Drop',
+      description: 'Einfache Zuordnungsübungen zu Indexierung und Speicherstrukturen.',
+      type: 'practice',
+      estimatedTime: '25 Min',
+      difficulty: 'Einfach',
+      prerequisites: ['phys-concepts'],
+      pageId: 'phys-drag-drop',
+      completed: completedSteps.has('phys-drag-drop')
+    },
+    {
+      id: 'phys-comprehensive',
+      title: 'Physischer Entwurf - Umfassende Übungen',
+      description: 'Progressive Übungen von Grundkonzepten bis zu erweiterten Optimierungstechniken.',
+      type: 'practice',
+      estimatedTime: '60 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-drag-drop'],
+      pageId: 'phys-comprehensive',
+      completed: completedSteps.has('phys-comprehensive')
+    },
+    {
+      id: 'phys-praxis',
+      title: 'Physischer Entwurf - Praxisfälle',
+      description: 'Realistische Szenarien aus E-Commerce, Analytics und anderen Bereichen.',
+      type: 'practice',
+      estimatedTime: '45 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-comprehensive'],
+      pageId: 'phys-praxis',
+      completed: completedSteps.has('phys-praxis')
+    },
+    {
+      id: 'phys-specialized',
+      title: 'Physischer Entwurf - Spezialisierte Übungen',
+      description: 'Deep Dive in B+-Bäume, Hashing, Bloom-Filter und Performance-Analyse.',
+      type: 'practice',
+      estimatedTime: '50 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['phys-praxis'],
+      pageId: 'phys-specialized',
+      completed: completedSteps.has('phys-specialized')
+    },
+    {
+      id: 'phys-tools',
+      title: 'Physischer Entwurf - Interaktive Tools',
+      description: 'Visualisiere Datenstrukturen mit interaktiven Tools und Simulationen.',
+      type: 'practice',
+      estimatedTime: '40 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-specialized'],
+      pageId: 'phys-tools',
+      completed: completedSteps.has('phys-tools')
+    },
+    {
+      id: 'phys-uebung',
+      title: 'Physischer Entwurf - Interaktive Übung',
+      description: 'Klassische interaktive Übungen zu physischen Datenbankstrukturen.',
+      type: 'practice',
+      estimatedTime: '35 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-tools'],
+      pageId: 'phys-uebung',
+      completed: completedSteps.has('phys-uebung')
+    },
+    {
+      id: 'phys-exam',
+      title: 'Physischer Entwurf - Prüfungssimulation',
+      description: 'Teste dein Wissen in einer realistischen Prüfungsumgebung mit Zeitlimit.',
+      type: 'exam',
+      estimatedTime: '60 Min',
+      difficulty: 'Schwer',
+      prerequisites: ['phys-uebung'],
+      pageId: 'phys-pruefung',
+      completed: completedSteps.has('phys-exam')
+    },
+    {
+      id: 'phys-quiz',
+      title: 'Physischer Entwurf - Wissens-Quiz',
+      description: 'Abschließendes Quiz mit verschiedenen Modi und detaillierter Auswertung.',
+      type: 'quiz',
+      estimatedTime: '20 Min',
+      difficulty: 'Mittel',
+      prerequisites: ['phys-exam'],
+      pageId: 'phys-quiz',
+      completed: completedSteps.has('phys-quiz')
     }
   ];
 
   const handleStepClick = (step: LearningStep) => {
-    const canAccess = step.prerequisites.every(prereq => 
-      completedSteps.has(prereq) || prereq === ''
-    );
-    
-    if (canAccess) {
-      onNavigate(step.pageId);
-    }
+    onNavigate(step.pageId);
   };
 
 
@@ -217,27 +497,16 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
 
       <div className="space-y-4">
         {learningSteps.map((step, index) => {
-          const canAccess = step.prerequisites.every(prereq => 
-            completedSteps.has(prereq) || prereq === ''
-          );
-          const isLocked = !canAccess;
-          
           return (
             <div
               key={step.id}
-              className={`bg-white rounded-lg shadow-md p-6 transition-all duration-200 ${
-                isLocked 
-                  ? 'opacity-50 cursor-not-allowed' 
-                  : 'hover:shadow-lg cursor-pointer'
-              }`}
-              onClick={() => !isLocked && handleStepClick(step)}
+              className="bg-white rounded-lg shadow-md p-6 transition-all duration-200 hover:shadow-lg cursor-pointer"
+              onClick={() => handleStepClick(step)}
             >
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
                   {step.completed ? (
                     <CheckCircle className="w-6 h-6 text-green-500" />
-                  ) : isLocked ? (
-                    <Circle className="w-6 h-6 text-gray-400" />
                   ) : (
                     <Circle className="w-6 h-6 text-blue-500" />
                   )}
@@ -269,7 +538,7 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
                   
                   {step.prerequisites.length > 0 && (
                     <div className="mb-3">
-                      <p className="text-sm text-gray-500 mb-1">Voraussetzungen:</p>
+                      <p className="text-sm text-gray-500 mb-1">Empfohlene Reihenfolge:</p>
                       <div className="flex flex-wrap gap-1">
                         {step.prerequisites.map((prereq, prereqIndex) => {
                           const prereqStep = learningSteps.find(s => s.id === prereq);
@@ -280,7 +549,7 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
                               className={`px-2 py-1 rounded text-xs ${
                                 isCompleted 
                                   ? 'bg-green-100 text-green-800' 
-                                  : 'bg-gray-100 text-gray-600'
+                                  : 'bg-blue-100 text-blue-600'
                               }`}
                             >
                               {prereqStep?.title || prereq}
@@ -289,12 +558,6 @@ export const LearningPath: React.FC<LearningPathProps> = ({ onNavigate }) => {
                         })}
                       </div>
                     </div>
-                  )}
-                  
-                  {isLocked && (
-                    <p className="text-sm text-red-600">
-                      🔒 Schließe zuerst die Voraussetzungen ab
-                    </p>
                   )}
                 </div>
                 

@@ -19,16 +19,22 @@ export const navigationItems: NavigationItem[] = [
       { id: 'rm-quiz', label: 'Wissens-Quiz', type: 'quiz' }
     ]
   },
-  {
-    id: 'er-modellierung',
-    label: 'ER-Modellierung',
-    icon: 'ProjectDiagram',
-    subItems: [
-      { id: 'er-grundlagen', label: 'Grundlagen', type: 'basics' },
-      { id: 'er-uebung', label: 'Interaktive Übung', type: 'exercise' },
-      { id: 'er-quiz', label: 'Wissens-Quiz', type: 'quiz' }
-    ]
-  },
+        {
+          id: 'er-modellierung',
+          label: 'ER-Modellierung',
+          icon: 'ProjectDiagram',
+          subItems: [
+            { id: 'er-grundlagen', label: 'Grundlagen', type: 'basics' },
+            { id: 'er-uebung', label: 'Einfache Übung', type: 'exercise' },
+            { id: 'er-comprehensive', label: 'Umfassende Übungen', type: 'exercise' },
+            { id: 'er-praxis', label: 'Praxisfälle', type: 'exercise' },
+            { id: 'er-pruefung', label: 'Prüfungssimulation', type: 'exercise' },
+            { id: 'er-weak-entity', label: 'Schwache Entitäten', type: 'exercise' },
+            { id: 'er-isa', label: 'ISA-Beziehungen', type: 'exercise' },
+            { id: 'er-relational-mapping', label: 'Relationale Abbildung', type: 'exercise' },
+            { id: 'er-quiz', label: 'Wissens-Quiz', type: 'quiz' }
+          ]
+        },
   {
     id: 'relationale-algebra',
     label: 'Relationale Algebra',
@@ -60,7 +66,13 @@ export const navigationItems: NavigationItem[] = [
     icon: 'HardDrive',
     subItems: [
       { id: 'phys-grundlagen', label: 'Grundlagen', type: 'basics' },
-      { id: 'phys-uebung', label: 'Interaktive Übung', type: 'exercise' },
+      { id: 'phys-concept-basics', label: 'Konzeptkarten', type: 'exercise' },
+      { id: 'phys-drag-drop', label: 'Drag & Drop', type: 'exercise' },
+      { id: 'phys-comprehensive', label: 'Umfassende Übungen', type: 'exercise' },
+      { id: 'phys-praxis', label: 'Praxisfälle', type: 'exercise' },
+      { id: 'phys-pruefung', label: 'Prüfungssimulation', type: 'exercise' },
+      { id: 'phys-specialized', label: 'Spezialisierte Übungen', type: 'exercise' },
+      { id: 'phys-tools', label: 'Interaktive Tools', type: 'exercise' },
       { id: 'phys-quiz', label: 'Wissens-Quiz', type: 'quiz' }
     ]
   },
@@ -70,7 +82,13 @@ export const navigationItems: NavigationItem[] = [
     icon: 'ArrowLeftRight',
     subItems: [
       { id: 'trans-grundlagen', label: 'Grundlagen', type: 'basics' },
-      { id: 'trans-uebung', label: 'Interaktive Übung', type: 'exercise' },
+      { id: 'trans-concept-basics', label: 'Konzeptkarten', type: 'exercise' },
+      { id: 'trans-drag-drop', label: 'Drag & Drop', type: 'exercise' },
+      { id: 'trans-comprehensive', label: 'Umfassende Übungen', type: 'exercise' },
+      { id: 'trans-praxis', label: 'Praxisfälle', type: 'exercise' },
+      { id: 'trans-pruefung', label: 'Prüfungssimulation', type: 'exercise' },
+      { id: 'trans-specialized', label: 'Spezialisierte Übungen', type: 'exercise' },
+      { id: 'trans-tools', label: 'Interaktive Tools', type: 'exercise' },
       { id: 'trans-quiz', label: 'Wissens-Quiz', type: 'quiz' }
     ]
   }

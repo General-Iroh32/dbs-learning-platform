@@ -36,7 +36,9 @@ import {
   ArrowRightCircle,
   Divide,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  Users,
+  User
 } from 'lucide-react';
 import type { ConceptCard } from '../types';
 
@@ -83,7 +85,9 @@ const iconMap = {
   ArrowRightCircle,
   Divide,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  Users,
+  User
 };
 
 export const ConceptBasics: React.FC<ConceptBasicsProps> = ({ 
