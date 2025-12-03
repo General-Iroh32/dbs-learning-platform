@@ -505,3 +505,4 @@ export const PhysPraxisExercise: React.FC = () => {
     </div>
   );
 };
+

@@ -523,3 +523,4 @@ export const PhysComprehensiveExercise: React.FC = () => {
     </div>
   );
 };
+

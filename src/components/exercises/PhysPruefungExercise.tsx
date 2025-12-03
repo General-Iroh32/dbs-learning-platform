@@ -671,3 +671,4 @@ export const PhysPruefungExercise: React.FC = () => {
     </div>
   );
 };
+
