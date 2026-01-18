@@ -37,6 +37,7 @@ import {
   Divide,
   RefreshCw,
   AlertTriangle,
+  Workflow,
   Users,
   User
 } from 'lucide-react';
@@ -86,6 +87,7 @@ const iconMap = {
   Divide,
   RefreshCw,
   AlertTriangle,
+  Workflow,
   Users,
   User
 };

@@ -325,3 +325,109 @@ export const sqlConcepts: ConceptCard[] = [
     icon: 'Network'
   }
 ];
+
+export const designTheoryConcepts: ConceptCard[] = [
+  {
+    title: 'Anomalien',
+    description: 'Probleme in schlecht entworfenen Datenbanken: Änderungsanomalien (Inkonsistenzen bei Updates), Einfügeanomalien (können keine neuen Daten einfügen), Löschanomalien (verlieren wichtige Daten beim Löschen).',
+    icon: 'Database'
+  },
+  {
+    title: 'Funktionale Abhängigkeiten',
+    description: 'Eine FD α → β bedeutet, dass α die Werte von β eindeutig bestimmt. Sie sind semantische Konsistenzbedingungen, die sich aus der Anwendungslogik ergeben.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Armstrong-Axiome',
+    description: 'Drei Grundregeln zur Ableitung neuer FDs: Reflexivität (β ⊆ α → α → β), Erweiterung (α → β → αγ → βγ), Transitivität (α → β ∧ β → γ → α → γ).',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Attributhülle',
+    description: 'Die Attributhülle α+ enthält alle Attribute, die von α funktional bestimmt werden. Wird mit einem iterativen Algorithmus berechnet.',
+    icon: 'Database'
+  },
+  {
+    title: 'Erste Normalform (1NF)',
+    description: 'Alle Attribute müssen atomar sein (nicht weiter zerlegbar). Keine Listen, Mengen oder zusammengesetzte Werte in den Zellen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Zweite Normalform (2NF)',
+    description: '1NF + keine partiellen Abhängigkeiten. Jedes Nicht-Primattribut muss voll funktional von jedem Kandidatenschlüssel abhängen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Dritte Normalform (3NF)',
+    description: '2NF + keine transitiven Abhängigkeiten. Für jede FD α → B muss α ein Superschlüssel sein oder B ein Primattribut.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Boyce-Codd-Normalform (BCNF)',
+    description: 'Strengere Version der 3NF. Für jede nicht-triviale FD α → B muss α ein Superschlüssel sein. Kann Abhängigkeitsbewahrung verletzen.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Verlustlose Zerlegung',
+    description: 'Eine Zerlegung ist verlustfrei, wenn die ursprüngliche Relation durch einen Join der neuen Relationen exakt rekonstruierbar ist.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Abhängigkeitsbewahrung',
+    description: 'Alle ursprünglichen FDs müssen in den neuen Relationen überprüfbar sein, ohne die Tabellen zu joinen.',
+    icon: 'Database'
+  }
+];
+
+export const dbs9Concepts: ConceptCard[] = [
+  {
+    title: 'SQL-Ausführungsreihenfolge',
+    description: 'SQL ist deklarativ - die geschriebene Reihenfolge (SELECT, FROM, WHERE...) unterscheidet sich von der Ausführungsreihenfolge (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY).',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Logische Anfrageoptimierung',
+    description: 'Heuristische Optimierung basierend auf relationaler Algebra. Ziel: Reduzierung der Größe von Zwischenergebnissen durch Transformationsregeln.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Transformationsregeln',
+    description: 'Äquivalenzerhaltende Regeln: Selektionen nach unten verschieben, Projektionen früh ausführen, Joins kommutativ und assoziativ.',
+    icon: 'Database'
+  },
+  {
+    title: 'Nested Loop Join',
+    description: 'Brute-Force-Strategie: Jedes Tupel der äußeren Relation wird mit jedem Tupel der inneren Relation verglichen. Kosten: b_outer + (ceil(b_outer / (nB - 2)) * b_inner).',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Hash Join',
+    description: 'Beide Relationen werden mit Hashfunktion partitioniert, dann werden passende Buckets gejoint. Kosten: ca. 3 * (b1 + b2). Optimal für große Tabellen.',
+    icon: 'Database'
+  },
+  {
+    title: 'Sort-Merge Join',
+    description: 'Beide Relationen werden auf Join-Attributen sortiert und dann wie ein Reißverschluss durchlaufen. Kosten: b1 + b2 (wenn bereits sortiert).',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'Index Nested Loop Join',
+    description: 'Nutzt einen Index für die innere Relation, um den vollständigen Scan zu vermeiden. Optimal für Punktabfragen mit Index.',
+    icon: 'Workflow'
+  },
+  {
+    title: 'Kostenbasierte Optimierung',
+    description: 'Wählt den besten Ausführungsplan basierend auf Kostenmodell und Statistiken. Berücksichtigt I/O-Kosten, CPU-Zeit und Selektivität.',
+    icon: 'Database'
+  },
+  {
+    title: 'Selektivität',
+    description: 'Anteil der Tupel, die eine Bedingung erfüllen. Wichtig für Kostenschätzung: σ = |σ_c(R)| / |R|. Niedrige Selektivität = wenige Tupel = effizient.',
+    icon: 'CheckSquare'
+  },
+  {
+    title: 'PostgreSQL EXPLAIN',
+    description: 'EXPLAIN zeigt den geplanten Ausführungsplan, EXPLAIN ANALYZE führt die Anfrage aus und zeigt reale Ausführungszeiten. Wichtig für Performance-Tuning.',
+    icon: 'Workflow'
+  }
+];
