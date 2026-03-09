@@ -346,6 +346,26 @@ export const PhysQuiz: React.FC = () => {
   }, [quizStarted, timeLeft, quizFinished]);
 
   const startQuiz = () => {
+    // Shuffle questions and answer options
+    const shuffleArray = <T,>(array: T[]): T[] => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    // Shuffle questions
+    const shuffledQuestions = shuffleArray(questions);
+    
+    // Shuffle answer options for each question
+    const questionsWithShuffledOptions = shuffledQuestions.map(question => ({
+      ...question,
+      options: shuffleArray(question.options)
+    }));
+
+    setQuestions(questionsWithShuffledOptions);
     setQuizStarted(true);
     setQuizFinished(false);
     setCurrentQuestion(0);

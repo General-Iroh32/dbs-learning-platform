@@ -215,7 +215,7 @@ export const PhysDragDropExercise: React.FC = () => {
     } else if (percentage >= 60) {
       setResult(`Gut! Du hast ${correctCount} von ${totalCount} Konzepten korrekt zugeordnet (${percentage}%). Schau dir die falsch zugeordneten Konzepte nochmal an.`);
     } else {
-      setResult(`Du hast ${correctCount} von ${totalCount} Konzepten korrekt zugeordnet (${percentage}%). Versuche es nochmal und überlege, welche Eigenschaften die verschiedenen Konzepte haben.`);
+      setResult(`Du hast ${correctCount} von ${totalCount} Konzepten korrekt zugeordnet (${percentage}%). Überlege, welche Eigenschaften die verschiedenen Konzepte haben.`);
     }
 
     setShowFeedback(true);

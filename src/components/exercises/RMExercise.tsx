@@ -125,7 +125,10 @@ export const RMExercise: React.FC = () => {
   const handleAnswer = (answer: string) => {
     setSelectedAnswer(answer);
     
-    if (currentStep === 0) {
+    if (answer === "show") {
+      // Lösung anzeigen für Schritt 1 (Schlüssel-Identifikation)
+      setResult("Primärschlüssel: Student.studID, Kurs.courseID, Belegt.(studID, courseID). Fremdschlüssel: Belegt.studID → Student.studID, Belegt.courseID → Kurs.courseID");
+    } else if (currentStep === 0) {
       if (answer === "A") {
         setResult("Richtig! Option A ist zulässig: atomare Werte, keine Duplikate.");
         setScore(score + 1);

@@ -59,6 +59,7 @@ export const TransQuiz: React.FC = () => {
   const [showExplanation, setShowExplanation] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuizQuestion[]>([]);
 
   const quizQuestions: QuizQuestion[] = [
     // ACID Questions
@@ -346,6 +347,26 @@ export const TransQuiz: React.FC = () => {
   }, [isTimerActive, timeLeft]);
 
   const startQuiz = () => {
+    // Shuffle questions and answer options
+    const shuffleArray = <T,>(array: T[]): T[] => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    // Shuffle questions
+    const shuffledQuestions = shuffleArray(quizQuestions);
+    
+    // Shuffle answer options for each question
+    const questionsWithShuffledOptions = shuffledQuestions.map(question => ({
+      ...question,
+      options: shuffleArray(question.options)
+    }));
+
+    setShuffledQuestions(questionsWithShuffledOptions);
     setIsQuizStarted(true);
     setIsTimerActive(true);
     setTimeLeft(1200);
@@ -365,10 +386,10 @@ export const TransQuiz: React.FC = () => {
   const calculateResult = () => {
     let correctAnswers = 0;
     let earnedPoints = 0;
-    const totalPoints = quizQuestions.reduce((sum, q) => sum + q.points, 0);
+    const totalPoints = shuffledQuestions.reduce((sum, q) => sum + q.points, 0);
     const categories: { [key: string]: { total: number; correct: number; points: number } } = {};
 
-    quizQuestions.forEach(question => {
+    shuffledQuestions.forEach(question => {
       const userAnswer = answers[question.id];
       const isCorrect = userAnswer === question.correctAnswer;
       
@@ -387,7 +408,7 @@ export const TransQuiz: React.FC = () => {
       }
     });
 
-    const percentage = (correctAnswers / quizQuestions.length) * 100;
+    const percentage = (correctAnswers / shuffledQuestions.length) * 100;
     let grade = 'F';
     if (percentage >= 90) grade = 'A';
     else if (percentage >= 80) grade = 'B';
@@ -418,7 +439,7 @@ export const TransQuiz: React.FC = () => {
     }
 
     setQuizResult({
-      totalQuestions: quizQuestions.length,
+      totalQuestions: shuffledQuestions.length,
       correctAnswers,
       totalPoints,
       earnedPoints,
@@ -476,7 +497,7 @@ export const TransQuiz: React.FC = () => {
             <div className="bg-blue-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-blue-800 mb-4">Quiz-Details</h3>
               <ul className="space-y-2 text-blue-700">
-                <li>• {quizQuestions.length} Fragen</li>
+                <li>• {shuffledQuestions.length} Fragen</li>
                 <li>• 20 Minuten Zeitlimit</li>
                 <li>• Multiple Choice Format</li>
                 <li>• Verschiedene Schwierigkeitsgrade</li>
@@ -635,7 +656,7 @@ export const TransQuiz: React.FC = () => {
     );
   }
 
-  const currentQ = quizQuestions[currentQuestion];
+  const currentQ = shuffledQuestions[currentQuestion];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
@@ -655,7 +676,7 @@ export const TransQuiz: React.FC = () => {
           </div>
           
           <div className="flex items-center justify-between text-sm text-gray-600">
-            <span>Frage {currentQuestion + 1} von {quizQuestions.length}</span>
+            <span>Frage {currentQuestion + 1} von {shuffledQuestions.length}</span>
             <span>{currentQ.points} Punkte</span>
             <span className="capitalize">{currentQ.category}</span>
             <span className={`px-2 py-1 rounded text-xs ${getDifficultyColor(currentQ.difficulty)}`}>
@@ -666,7 +687,7 @@ export const TransQuiz: React.FC = () => {
           <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
             <div 
               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}
+              style={{ width: `${((currentQuestion + 1) / shuffledQuestions.length) * 100}%` }}
             />
           </div>
         </div>
@@ -712,14 +733,14 @@ export const TransQuiz: React.FC = () => {
           </button>
           
           <div className="flex gap-2">
-            {quizQuestions.map((_, index) => (
+            {shuffledQuestions.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentQuestion(index)}
                 className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${
                   index === currentQuestion
                     ? 'bg-blue-600 text-white'
-                    : answers[quizQuestions[index].id] !== undefined
+                    : answers[shuffledQuestions[index].id] !== undefined
                     ? 'bg-green-500 text-white'
                     : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                 }`}
@@ -729,7 +750,7 @@ export const TransQuiz: React.FC = () => {
             ))}
           </div>
           
-          {currentQuestion === quizQuestions.length - 1 ? (
+          {currentQuestion === shuffledQuestions.length - 1 ? (
             <button
               onClick={finishQuiz}
               className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
@@ -743,8 +764,8 @@ export const TransQuiz: React.FC = () => {
                 if (selectedAnswer !== null) {
                   setAnswers(prev => ({ ...prev, [currentQ.id]: selectedAnswer }));
                 }
-                setCurrentQuestion(Math.min(quizQuestions.length - 1, currentQuestion + 1));
-                setSelectedAnswer(answers[quizQuestions[Math.min(quizQuestions.length - 1, currentQuestion + 1)].id] ?? null);
+                setCurrentQuestion(Math.min(shuffledQuestions.length - 1, currentQuestion + 1));
+                setSelectedAnswer(answers[shuffledQuestions[Math.min(shuffledQuestions.length - 1, currentQuestion + 1)].id] ?? null);
               }}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >

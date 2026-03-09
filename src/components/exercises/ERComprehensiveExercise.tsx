@@ -128,70 +128,6 @@ export const ERComprehensiveExercise: React.FC = () => {
       points: 20
     },
 
-    // Level 3: Diagramm-Erstellung
-    {
-      id: 'diagram-basic',
-      title: 'Einfaches ER-Diagramm',
-      description: 'Erstelle ein einfaches ER-Diagramm',
-      difficulty: 'Mittel',
-      type: 'diagram-creation',
-      scenario: 'Studenten belegen Kurse. Jeder Student hat eine Matrikelnummer und einen Namen. Jeder Kurs hat eine Kurs-ID und einen Titel.',
-      question: 'Erstelle das ER-Diagramm mit den korrekten Entitätstypen, Attributen und Beziehungen.',
-      correctAnswer: {
-        entities: ['Student', 'Kurs'],
-        attributes: {
-          'Student': ['Matrikelnummer', 'Name'],
-          'Kurs': ['Kurs-ID', 'Titel']
-        },
-        relationships: [{
-          from: 'Student',
-          to: 'Kurs',
-          name: 'belegt',
-          cardinality: 'N:M'
-        }]
-      },
-      explanation: 'Das Diagramm zeigt zwei Entitätstypen mit ihren Attributen und einer N:M Beziehung zwischen ihnen.',
-      hints: ['Beginne mit den Entitätstypen', 'Füge dann die Attribute hinzu', 'Verbinde mit Beziehungen'],
-      points: 25
-    },
-
-    // Level 4: Schwache Entitätstypen
-    {
-      id: 'weak-entities',
-      title: 'Schwache Entitätstypen',
-      description: 'Erkenne und modelliere schwache Entitätstypen',
-      difficulty: 'Schwer',
-      type: 'weak-entities',
-      scenario: 'Ein Student kann mehrere Prüfungen ablegen. Jede Prüfung gehört zu genau einem Studenten und hat eine Prüfungsnummer.',
-      question: 'Welcher Entitätstyp ist schwach und warum?',
-      correctAnswer: 'Prüfung',
-      explanation: 'Prüfung ist ein schwacher Entitätstyp, da sie nur in Kombination mit Student eindeutig identifiziert werden kann. Die Prüfungsnummer ist ein Teilschlüssel.',
-      hints: ['Schwache Entitätstypen sind abhängig', 'Sie können nicht allein identifiziert werden'],
-      points: 30
-    },
-
-    // Level 5: ISA-Beziehungen
-    {
-      id: 'isa-relationships',
-      title: 'ISA-Beziehungen',
-      description: 'Modelliere Spezialisierung und Generalisierung',
-      difficulty: 'Schwer',
-      type: 'isa-relationships',
-      scenario: 'Es gibt Angestellte der Universität. Professoren sind Angestellte mit zusätzlichen Attributen wie Rang und Büro. Assistenten sind Angestellte mit einem Fachbereich.',
-      question: 'Wie würdest du die ISA-Beziehung zwischen Angestellter, Professor und Assistent modellieren?',
-      correctAnswer: {
-        supertype: 'Angestellter',
-        subtypes: ['Professor', 'Assistent'],
-        attributes: {
-          'Angestellter': ['Personalnummer', 'Name'],
-          'Professor': ['Rang', 'Büro'],
-          'Assistent': ['Fachbereich']
-        }
-      },
-      explanation: 'Angestellter ist der Supertyp mit gemeinsamen Attributen. Professor und Assistent sind Subtypen mit spezifischen Attributen.',
-      hints: ['ISA modelliert Vererbung', 'Gemeinsame Attribute kommen in den Supertyp'],
-      points: 35
-    }
   ];
 
   const [currentExerciseData, setCurrentExerciseData] = useState<ERExercise>(exercises[0]);
@@ -268,14 +204,33 @@ export const ERComprehensiveExercise: React.FC = () => {
   const handleDrop = (e: React.DragEvent, category: string) => {
     e.preventDefault();
     const itemData = e.dataTransfer.getData('text/plain');
-    const item: DragDropItem = JSON.parse(itemData);
     
+    try {
+      const item: DragDropItem = JSON.parse(itemData);
+      
+      // Check if item is already in a drop zone
+      const isAlreadyPlaced = Object.values(dropZones).flat().some(placedItem => placedItem.name === item.name);
+      
+      if (!isAlreadyPlaced) {
+        setDropZones(prev => ({
+          ...prev,
+          [category]: [...prev[category], item]
+        }));
+        
+        setDragDropItems(prev => prev.filter(i => i.name !== item.name));
+      }
+    } catch (error) {
+      console.error('Error parsing dropped item:', error);
+    }
+  };
+
+  const removeFromDropZone = (item: DragDropItem, category: string) => {
     setDropZones(prev => ({
       ...prev,
-      [category]: [...prev[category], item]
+      [category]: prev[category].filter(i => i.name !== item.name)
     }));
     
-    setDragDropItems(prev => prev.filter(i => i.name !== item.name));
+    setDragDropItems(prev => [...prev, item]);
   };
 
   const checkAnswer = () => {
@@ -285,10 +240,21 @@ export const ERComprehensiveExercise: React.FC = () => {
     if (exercise.type === 'drag-drop') {
       const correctItems = exercise.correctAnswer;
       const userItems = Object.values(dropZones).flat().map(item => item.name);
-      correct = correctItems.every(item => userItems.includes(item)) && 
-                userItems.every(item => correctItems.includes(item));
+      
+      // Check if all correct items are present and no extra items
+      const hasAllCorrect = correctItems.every(item => userItems.includes(item));
+      const hasNoExtra = userItems.every(item => correctItems.includes(item));
+      correct = hasAllCorrect && hasNoExtra;
+      
+      console.log('Drag-drop check:', { correctItems, userItems, hasAllCorrect, hasNoExtra, correct });
     } else if (exercise.type === 'cardinality') {
-      correct = JSON.stringify(userAnswer) === JSON.stringify(exercise.correctAnswer);
+      const correctAnswer = exercise.correctAnswer;
+      const userAnswerObj = userAnswer || {};
+      
+      correct = userAnswerObj.entity1 === correctAnswer.entity1 && 
+                userAnswerObj.entity2 === correctAnswer.entity2;
+      
+      console.log('Cardinality check:', { correctAnswer, userAnswer: userAnswerObj, correct });
     }
     
     setIsCorrect(correct);
@@ -359,10 +325,12 @@ export const ERComprehensiveExercise: React.FC = () => {
             {dropZones.entity.map((item, index) => (
               <div
                 key={`entity-${index}`}
-                className={`inline-block p-2 m-1 rounded-md shadow-sm ${
+                className={`inline-block p-2 m-1 rounded-md shadow-sm cursor-pointer hover:opacity-75 ${
                   isCorrect === null ? 'bg-gray-200' : 
                   item.type === 'entity' ? 'bg-green-100' : 'bg-red-100'
                 }`}
+                onClick={() => removeFromDropZone(item, 'entity')}
+                title="Klicken zum Entfernen"
               >
                 {item.name}
               </div>
@@ -383,10 +351,12 @@ export const ERComprehensiveExercise: React.FC = () => {
             {dropZones.attribute.map((item, index) => (
               <div
                 key={`attribute-${index}`}
-                className={`inline-block p-2 m-1 rounded-md shadow-sm ${
+                className={`inline-block p-2 m-1 rounded-md shadow-sm cursor-pointer hover:opacity-75 ${
                   isCorrect === null ? 'bg-gray-200' : 
                   item.type === 'attribute' ? 'bg-green-100' : 'bg-red-100'
                 }`}
+                onClick={() => removeFromDropZone(item, 'attribute')}
+                title="Klicken zum Entfernen"
               >
                 {item.name}
               </div>
@@ -407,10 +377,12 @@ export const ERComprehensiveExercise: React.FC = () => {
             {dropZones.relationship.map((item, index) => (
               <div
                 key={`relationship-${index}`}
-                className={`inline-block p-2 m-1 rounded-md shadow-sm ${
+                className={`inline-block p-2 m-1 rounded-md shadow-sm cursor-pointer hover:opacity-75 ${
                   isCorrect === null ? 'bg-gray-200' : 
                   item.type === 'relationship' ? 'bg-green-100' : 'bg-red-100'
                 }`}
+                onClick={() => removeFromDropZone(item, 'relationship')}
+                title="Klicken zum Entfernen"
               >
                 {item.name}
               </div>
@@ -421,60 +393,68 @@ export const ERComprehensiveExercise: React.FC = () => {
     </div>
   );
 
-  const renderCardinalityExercise = () => (
-    <div className="space-y-6">
-      <div className="p-4 bg-blue-50 border-l-4 border-blue-400">
-        <p className="font-bold">Szenario:</p>
-        <p>{currentExerciseData.scenario}</p>
-      </div>
-      
-      <div className="text-center">
-        <h3 className="text-lg font-semibold mb-4">{currentExerciseData.question}</h3>
+  const renderCardinalityExercise = () => {
+    const exercise = exercises[currentExercise];
+    const cardinalityData = exercise as any;
+    
+    return (
+      <div className="space-y-6">
+        <div className="p-4 bg-blue-50 border-l-4 border-blue-400">
+          <p className="font-bold">Szenario:</p>
+          <p>{currentExerciseData.scenario}</p>
+        </div>
         
-        <div className="flex justify-center items-center space-x-4 mb-6">
-          <div className="text-center">
-            <div className="w-24 h-16 bg-blue-100 rounded-lg flex items-center justify-center font-semibold">
-              Student
-            </div>
-            <div className="mt-2">
-              <select 
-                className="border rounded px-2 py-1"
-                onChange={(e) => setUserAnswer(prev => ({ ...prev, entity1: e.target.value }))}
-              >
-                <option value="">Wähle...</option>
-                <option value="1">1</option>
-                <option value="N">N</option>
-                <option value="M">M</option>
-              </select>
-            </div>
-          </div>
+        <div className="text-center">
+          <h3 className="text-lg font-semibold mb-4">{currentExerciseData.question}</h3>
           
-          <div className="text-center">
-            <div className="w-24 h-16 bg-red-100 rounded-lg flex items-center justify-center font-semibold">
-              belegt
+          <div className="flex justify-center items-center space-x-4 mb-6">
+            <div className="text-center">
+              <div className="w-24 h-16 bg-blue-100 rounded-lg flex items-center justify-center font-semibold text-sm">
+                {cardinalityData.entity1 || 'Entität 1'}
+              </div>
+              <div className="mt-2">
+                <select 
+                  className="border rounded px-2 py-1"
+                  value={userAnswer?.entity1 || ''}
+                  onChange={(e) => setUserAnswer(prev => ({ ...prev, entity1: e.target.value }))}
+                >
+                  <option value="">Wähle...</option>
+                  <option value="1">1</option>
+                  <option value="N">N</option>
+                  <option value="M">M</option>
+                </select>
+              </div>
             </div>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-24 h-16 bg-blue-100 rounded-lg flex items-center justify-center font-semibold">
-              Kurs
+            
+            <div className="text-center">
+              <div className="w-24 h-16 bg-red-100 rounded-lg flex items-center justify-center font-semibold text-sm">
+                {cardinalityData.relationship || 'Beziehung'}
+              </div>
             </div>
-            <div className="mt-2">
-              <select 
-                className="border rounded px-2 py-1"
-                onChange={(e) => setUserAnswer(prev => ({ ...prev, entity2: e.target.value }))}
-              >
-                <option value="">Wähle...</option>
-                <option value="1">1</option>
-                <option value="N">N</option>
-                <option value="M">M</option>
-              </select>
+            
+            <div className="text-center">
+              <div className="w-24 h-16 bg-blue-100 rounded-lg flex items-center justify-center font-semibold text-sm">
+                {cardinalityData.entity2 || 'Entität 2'}
+              </div>
+              <div className="mt-2">
+                <select 
+                  className="border rounded px-2 py-1"
+                  value={userAnswer?.entity2 || ''}
+                  onChange={(e) => setUserAnswer(prev => ({ ...prev, entity2: e.target.value }))}
+                >
+                  <option value="">Wähle...</option>
+                  <option value="1">1</option>
+                  <option value="N">N</option>
+                  <option value="M">M</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
+
 
   const renderExercise = () => {
     switch (currentExerciseData.type) {

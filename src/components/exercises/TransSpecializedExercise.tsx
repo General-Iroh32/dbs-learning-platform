@@ -761,7 +761,7 @@ export const TransSpecializedExercise: React.FC = () => {
                   }}
                   className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
                 >
-                  Nochmal versuchen
+                  Weiter
                 </button>
                 <button
                   onClick={() => {
