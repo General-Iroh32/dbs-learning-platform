@@ -7,10 +7,11 @@ import {
   ArrowLeftRight,
   ChevronDown,
   ChevronRight,
-  FileText,
   Database,
   Map,
+  Menu,
   Settings,
+  X,
   Zap
 } from 'lucide-react';
 import type { NavigationItem } from '../types';
@@ -26,7 +27,6 @@ interface NavigationProps {
     CheckSquare,
     HardDrive,
     ArrowLeftRight,
-    FileText,
     Database,
     Map,
     Settings,
@@ -35,6 +35,7 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }) => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigationItems: NavigationItem[] = [
     {
@@ -157,11 +158,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
         { id: 'sql-quiz', label: 'Wissens-Quiz', type: 'quiz' }
       ]
     },
-    {
-      id: 'pdfs',
-      label: 'PDF-Dokumente',
-      icon: 'FileText'
-    }
   ];
 
   const toggleExpanded = (itemId: string) => {
@@ -175,12 +171,19 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
   };
 
   const handleMainItemClick = (item: NavigationItem) => {
-    onNavigate(item.id);
+    onNavigate(item.subItems?.[0]?.id ?? item.id);
+
+    if (item.subItems?.length === 1 && item.subItems[0].id === item.id) {
+      setIsMobileOpen(false);
+      return;
+    }
+
     toggleExpanded(item.id);
   };
 
   const handleSubItemClick = (subItemId: string) => {
     onNavigate(subItemId);
+    setIsMobileOpen(false);
   };
 
   const isMainItemActive = (item: NavigationItem) => {
@@ -194,11 +197,26 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
 
   return (
     <aside className="w-full md:w-72 bg-white shadow-lg">
-      <div className="p-6">
-        <h1 className="text-2xl font-bold text-blue-600">DBS Lernplattform</h1>
-        <p className="text-sm text-gray-500">Dein Begleiter zur Prüfung</p>
+      <div className="flex items-center justify-between p-6 md:block">
+        <div>
+          <h1 className="text-2xl font-bold text-blue-600">DBS Lernplattform</h1>
+          <p className="text-sm text-gray-500">Dein Begleiter zur Prüfung</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setIsMobileOpen((isOpen) => !isOpen)}
+          aria-expanded={isMobileOpen}
+          aria-controls="primary-navigation"
+          aria-label={isMobileOpen ? 'Themenmenü schließen' : 'Themenmenü öffnen'}
+          className="rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+        >
+          {isMobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+        </button>
       </div>
-      <nav className="mt-6">
+      <nav
+        id="primary-navigation"
+        className={`${isMobileOpen ? 'block' : 'hidden'} mt-2 pb-4 md:mt-6 md:block md:pb-0`}
+      >
         <h2 className="px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">
           Themen
         </h2>
@@ -211,7 +229,11 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
             return (
               <div key={item.id}>
                 <button
+                  type="button"
                   onClick={() => handleMainItemClick(item)}
+                  aria-current={isActive ? 'page' : undefined}
+                  aria-expanded={item.subItems ? isExpanded : undefined}
+                  aria-controls={item.subItems ? `navigation-${item.id}` : undefined}
                   className={`nav-item flex items-center w-full px-6 py-3 text-left text-gray-700 ${
                     isActive ? 'active' : ''
                   }`}
@@ -227,11 +249,13 @@ export const Navigation: React.FC<NavigationProps> = ({ onNavigate, activePage }
                   )}
                 </button>
                 {item.subItems && isExpanded && (
-                  <div className="space-y-1">
+                  <div className="space-y-1" id={`navigation-${item.id}`}>
                     {item.subItems.map((subItem) => (
                       <button
+                        type="button"
                         key={subItem.id}
                         onClick={() => handleSubItemClick(subItem.id)}
+                        aria-current={isSubItemActive(subItem.id) ? 'page' : undefined}
                         className={`nav-item nav-sub-item block w-full text-left py-2 text-sm text-gray-600 ${
                           isSubItemActive(subItem.id) ? 'active' : ''
                         }`}

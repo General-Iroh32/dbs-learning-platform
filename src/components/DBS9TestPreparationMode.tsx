@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 interface TestQuestion {
   id: string;
@@ -131,15 +131,6 @@ export const DBS9TestPreparationMode: React.FC = () => {
     }
   ];
 
-  useEffect(() => {
-    if (testStarted && timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0) {
-      finishTest();
-    }
-  }, [timeLeft, testStarted]);
-
   const startTest = () => {
     // Shuffle questions
     const shuffledQuestions = testQuestions.sort(() => Math.random() - 0.5);
@@ -188,7 +179,7 @@ export const DBS9TestPreparationMode: React.FC = () => {
     setShowResult(true);
   };
 
-  const finishTest = () => {
+  const finishTest = useCallback(() => {
     let totalScore = 0;
     questions.forEach(q => {
       const userAnswer = userAnswers[q.id];
@@ -199,7 +190,18 @@ export const DBS9TestPreparationMode: React.FC = () => {
     });
     setScore(totalScore);
     setTestCompleted(true);
-  };
+  }, [questions, userAnswers]);
+
+  useEffect(() => {
+    if (testStarted && timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft((seconds) => seconds - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+
+    if (timeLeft === 0) {
+      finishTest();
+    }
+  }, [finishTest, testStarted, timeLeft]);
 
   const resetTest = () => {
     setQuestions([]);

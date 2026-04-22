@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Lightbulb } from 'lucide-react';
 import type { QuizData, AnswerOption } from '../types';
+import { prepareQuestions, scorePercentage } from '../domain/quizEngine';
 
 interface QuizProps {
   quizData: QuizData;
@@ -9,36 +10,12 @@ interface QuizProps {
 }
 
 export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
-  const [shuffledQuestions, setShuffledQuestions] = useState(quizData.questions);
+  const [shuffledQuestions, setShuffledQuestions] = useState(() => prepareQuestions(quizData.questions));
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showRationale, setShowRationale] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
-
-  // Shuffle questions and answer options on component mount
-  useEffect(() => {
-    const shuffleArray = <T,>(array: T[]): T[] => {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    };
-
-    // Shuffle questions
-    const shuffledQuestions = shuffleArray(quizData.questions);
-    
-    // Shuffle answer options for each question
-    const questionsWithShuffledAnswers = shuffledQuestions.map(question => ({
-      ...question,
-      answerOptions: shuffleArray(question.answerOptions)
-    }));
-
-    setShuffledQuestions(questionsWithShuffledAnswers);
-  }, [quizData]);
-
+  const [isFinished, setIsFinished] = useState(false);
   const currentQuestion = shuffledQuestions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === shuffledQuestions.length - 1;
 
@@ -47,31 +24,33 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
     
     setSelectedAnswer(answerIndex);
     setIsAnswered(true);
-    setShowRationale(true);
     
     if (currentQuestion.answerOptions[answerIndex].isCorrect) {
-      setScore(score + 1);
+      setScore((currentScore) => currentScore + 1);
     }
   };
 
   const handleNextQuestion = () => {
     if (isLastQuestion) {
-      // Quiz finished
-      setCurrentQuestionIndex(0);
-      setScore(0);
-      setSelectedAnswer(null);
-      setShowRationale(false);
-      setIsAnswered(false);
+      setIsFinished(true);
     } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex((index) => index + 1);
       setSelectedAnswer(null);
-      setShowRationale(false);
       setIsAnswered(false);
     }
   };
 
+  const handleRestart = () => {
+    setShuffledQuestions(prepareQuestions(quizData.questions));
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setSelectedAnswer(null);
+    setIsAnswered(false);
+    setIsFinished(false);
+  };
+
   const getOptionClasses = (index: number, option: AnswerOption) => {
-    let classes = 'quiz-option p-4 rounded-lg border-2 border-gray-200 hover:bg-gray-100';
+    let classes = 'quiz-option w-full p-4 text-left rounded-lg border-2 border-gray-200 hover:bg-gray-100 disabled:cursor-default';
     
     if (isAnswered) {
       if (option.isCorrect) {
@@ -86,8 +65,13 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
     return classes;
   };
 
-  if (currentQuestionIndex === 0 && score > 0) {
-    // Quiz finished, show results
+  if (shuffledQuestions.length === 0 || !currentQuestion) {
+    return <p role="alert">Für dieses Quiz sind derzeit keine Fragen verfügbar.</p>;
+  }
+
+  if (isFinished) {
+    const percentage = scorePercentage(score, shuffledQuestions.length);
+
     return (
       <div>
         <h1 className="text-3xl font-bold mb-2">{title}</h1>
@@ -97,11 +81,15 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
           <p className="text-lg mb-6">
             Du hast {score} von {shuffledQuestions.length} Fragen richtig beantwortet.
           </p>
+          <p className="text-lg mb-6" aria-live="polite">
+            Ergebnis: {percentage} Prozent
+          </p>
           <button
-            onClick={handleNextQuestion}
+            type="button"
+            onClick={handleRestart}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Weiter
+            Quiz erneut starten
           </button>
         </div>
       </div>
@@ -126,23 +114,27 @@ export const Quiz: React.FC<QuizProps> = ({ quizData, title, description }) => {
         
         <div className="space-y-3" id="quiz-options">
           {currentQuestion.answerOptions.map((option, index) => (
-            <div
-              key={index}
+            <button
+              type="button"
+              key={option.text}
               className={getOptionClasses(index, option)}
               onClick={() => handleAnswerSelect(index)}
+              disabled={isAnswered}
+              aria-pressed={selectedAnswer === index}
             >
               {option.text}
-              {showRationale && (
+              {isAnswered && (
                 <div className={`rationale ${option.isCorrect ? 'correct' : 'incorrect'} mt-2`}>
                   {option.rationale}
                 </div>
               )}
-            </div>
+            </button>
           ))}
         </div>
         
         {isAnswered && (
           <button
+            type="button"
             onClick={handleNextQuestion}
             className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
