@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Database, 
   CheckCircle, 
   XCircle, 
-  ArrowRight, 
   Trophy, 
-  BookOpen, 
   Target,
   Clock,
   AlertTriangle,
@@ -56,7 +53,6 @@ export const TransQuiz: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(1200); // 20 minutes
   const [showResult, setShowResult] = useState(false);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState<QuizQuestion[]>([]);

@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
 
-interface ExecutionStep {
-  id: number;
-  description: string;
-  sqlClause: string;
-  example: string;
-}
-
 export const QueryExecutionExercise: React.FC = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [userOrder, setUserOrder] = useState<number[]>([]);
@@ -182,7 +175,7 @@ ORDER BY AVG(salary) DESC;`,
                 <div>
                   <p className="mb-2">Die korrekte Reihenfolge ist:</p>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
-                    {exercises[currentExercise].correctOrder.map((stepId, index) => {
+                    {exercises[currentExercise].correctOrder.map((stepId) => {
                       const step = current.steps.find(s => s.id === stepId);
                       return (
                         <li key={stepId}>

@@ -10,7 +10,6 @@ import {
   BookOpen, 
   Target,
   AlertTriangle,
-  Clock,
   Users,
   Activity
 } from 'lucide-react';

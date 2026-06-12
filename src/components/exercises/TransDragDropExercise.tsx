@@ -4,8 +4,7 @@ import {
   CheckCircle, 
   XCircle, 
   RotateCcw, 
-  ArrowRight, 
-  Target,
+  ArrowRight,
   Clock,
   Trophy,
   AlertCircle

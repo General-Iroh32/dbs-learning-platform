@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Database, Key, Link, CheckCircle, XCircle, ArrowRight, BookOpen, Target } from 'lucide-react';
+import { Key, CheckCircle, XCircle } from 'lucide-react';
 
 interface RelationalMappingExercise {
   id: string;
@@ -58,8 +58,8 @@ export const ERToRelationalMapping: React.FC = () => {
     }[];
   }>({ relations: [] });
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [score, setScore] = useState(0);
+  const [, setShowExplanation] = useState(false);
+  const [, setScore] = useState(0);
   const [showHint, setShowHint] = useState(false);
 
   const exercises: RelationalMappingExercise[] = [

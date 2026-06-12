@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, XCircle, Target, Trophy, RotateCcw, Clock, Brain, Zap } from 'lucide-react';
+import { CheckCircle, XCircle, Trophy, RotateCcw, Clock, Zap } from 'lucide-react';
 
 interface QuizQuestion {
   id: string;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Key, Link, CheckCircle, XCircle, AlertTriangle, BookOpen, Target } from 'lucide-react';
+import { CheckCircle, XCircle, Target } from 'lucide-react';
 
 interface WeakEntityExercise {
   id: string;

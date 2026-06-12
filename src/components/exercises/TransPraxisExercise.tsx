@@ -8,8 +8,6 @@ import {
   BookOpen, 
   Target,
   Clock,
-  AlertTriangle,
-  RefreshCw,
   Building,
   CreditCard,
   ShoppingCart,
@@ -42,7 +40,7 @@ export const TransPraxisExercise: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes per exercise
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set());
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [, setShowExplanation] = useState(false);
 
   const exercises: PraxisExercise[] = [
     // Banking Scenarios

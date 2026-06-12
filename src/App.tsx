@@ -1,56 +1,8 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { ConceptBasics } from './components/ConceptBasics';
 import { Quiz } from './components/Quiz';
-import { PDFViewer } from './components/PDFViewer';
 import { LearningPath } from './components/LearningPath';
-import { RMExercise } from './components/exercises/RMExercise';
-import { ERExercise } from './components/exercises/ERExercise';
-import { ERComprehensiveExercise } from './components/exercises/ERComprehensiveExercise';
-import { ERToRelationalMapping } from './components/exercises/ERToRelationalMapping';
-import { ERPraxisExercise } from './components/exercises/ERPraxisExercise';
-import { ERPruefungExercise } from './components/exercises/ERPruefungExercise';
-import { ERWeakEntityExercise } from './components/exercises/ERWeakEntityExercise';
-import { ERISAExercise } from './components/exercises/ERISAExercise';
-import { RAExercise } from './components/exercises/RAExercise';
-import { RAPraxisExercise } from './components/exercises/RAPraxisExercise';
-import { RAPruefungExercise } from './components/exercises/RAPruefungExercise';
-import { RADivisionExercise } from './components/exercises/RADivisionExercise';
-import { RAOperatorTreeExercise } from './components/exercises/RAOperatorTreeExercise';
-import { RAComplexExercise } from './components/exercises/RAComplexExercise';
-import { NormExercise } from './components/exercises/NormExercise';
-import { PhysExercise } from './components/exercises/PhysExercise';
-import { PhysConceptBasics } from './components/exercises/PhysConceptBasics';
-import { PhysDragDropExercise } from './components/exercises/PhysDragDropExercise';
-import { PhysComprehensiveExercise } from './components/exercises/PhysComprehensiveExercise';
-import { PhysPraxisExercise } from './components/exercises/PhysPraxisExercise';
-import { PhysPruefungExercise } from './components/exercises/PhysPruefungExercise';
-import { PhysSpecializedExercise } from './components/exercises/PhysSpecializedExercise';
-import { PhysInteractiveTools } from './components/exercises/PhysInteractiveTools';
-import { PhysQuiz } from './components/exercises/PhysQuiz';
-import { TransExercise } from './components/exercises/TransExercise';
-import { TransConceptBasics } from './components/exercises/TransConceptBasics';
-import { TransDragDropExercise } from './components/exercises/TransDragDropExercise';
-import { TransComprehensiveExercise } from './components/exercises/TransComprehensiveExercise';
-import { TransPraxisExercise } from './components/exercises/TransPraxisExercise';
-import { TransPruefungExercise } from './components/exercises/TransPruefungExercise';
-import { TransSpecializedExercise } from './components/exercises/TransSpecializedExercise';
-import { TransInteractiveTools } from './components/exercises/TransInteractiveTools';
-import { TransQuiz } from './components/exercises/TransQuiz';
-import { SQLExercise } from './components/exercises/SQLExercise';
-import { ProgressiveLearningSystem } from './components/ProgressiveLearningSystem';
-import { AnomalyExercise } from './components/exercises/AnomalyExercise';
-import { FunctionalDependencyExercise } from './components/exercises/FunctionalDependencyExercise';
-import { AttributeClosureExercise } from './components/exercises/AttributeClosureExercise';
-import { NormalizationExercise } from './components/exercises/NormalizationExercise';
-import { DecompositionExercise } from './components/exercises/DecompositionExercise';
-import { TestPreparationMode } from './components/TestPreparationMode';
-import { ProgressiveDBS9LearningSystem } from './components/ProgressiveDBS9LearningSystem';
-import { QueryExecutionExercise } from './components/exercises/QueryExecutionExercise';
-import { LogicalOptimizationExercise } from './components/exercises/LogicalOptimizationExercise';
-import { JoinAlgorithmsExercise } from './components/exercises/JoinAlgorithmsExercise';
-import { CostOptimizationExercise } from './components/exercises/CostOptimizationExercise';
-import { DBS9TestPreparationMode } from './components/DBS9TestPreparationMode';
 import { 
   rmConcepts,
   erConcepts, 
@@ -70,7 +22,54 @@ import {
   designTheoryQuizData
 } from './data/quizData';
 import { dbs9QuizData } from './data/dbs9QuizData';
-import { pdfDocuments } from './data/navigationData';
+
+const RMExercise = lazy(() => import('./components/exercises/RMExercise').then((module) => ({ default: module.RMExercise })));
+const ERExercise = lazy(() => import('./components/exercises/ERExercise').then((module) => ({ default: module.ERExercise })));
+const ERComprehensiveExercise = lazy(() => import('./components/exercises/ERComprehensiveExercise').then((module) => ({ default: module.ERComprehensiveExercise })));
+const ERToRelationalMapping = lazy(() => import('./components/exercises/ERToRelationalMapping').then((module) => ({ default: module.ERToRelationalMapping })));
+const ERPraxisExercise = lazy(() => import('./components/exercises/ERPraxisExercise').then((module) => ({ default: module.ERPraxisExercise })));
+const ERPruefungExercise = lazy(() => import('./components/exercises/ERPruefungExercise').then((module) => ({ default: module.ERPruefungExercise })));
+const ERWeakEntityExercise = lazy(() => import('./components/exercises/ERWeakEntityExercise').then((module) => ({ default: module.ERWeakEntityExercise })));
+const ERISAExercise = lazy(() => import('./components/exercises/ERISAExercise').then((module) => ({ default: module.ERISAExercise })));
+const RAExercise = lazy(() => import('./components/exercises/RAExercise').then((module) => ({ default: module.RAExercise })));
+const RAPraxisExercise = lazy(() => import('./components/exercises/RAPraxisExercise').then((module) => ({ default: module.RAPraxisExercise })));
+const RAPruefungExercise = lazy(() => import('./components/exercises/RAPruefungExercise').then((module) => ({ default: module.RAPruefungExercise })));
+const RADivisionExercise = lazy(() => import('./components/exercises/RADivisionExercise').then((module) => ({ default: module.RADivisionExercise })));
+const RAOperatorTreeExercise = lazy(() => import('./components/exercises/RAOperatorTreeExercise').then((module) => ({ default: module.RAOperatorTreeExercise })));
+const RAComplexExercise = lazy(() => import('./components/exercises/RAComplexExercise').then((module) => ({ default: module.RAComplexExercise })));
+const NormExercise = lazy(() => import('./components/exercises/NormExercise').then((module) => ({ default: module.NormExercise })));
+const PhysExercise = lazy(() => import('./components/exercises/PhysExercise').then((module) => ({ default: module.PhysExercise })));
+const PhysConceptBasics = lazy(() => import('./components/exercises/PhysConceptBasics').then((module) => ({ default: module.PhysConceptBasics })));
+const PhysDragDropExercise = lazy(() => import('./components/exercises/PhysDragDropExercise').then((module) => ({ default: module.PhysDragDropExercise })));
+const PhysComprehensiveExercise = lazy(() => import('./components/exercises/PhysComprehensiveExercise').then((module) => ({ default: module.PhysComprehensiveExercise })));
+const PhysPraxisExercise = lazy(() => import('./components/exercises/PhysPraxisExercise').then((module) => ({ default: module.PhysPraxisExercise })));
+const PhysPruefungExercise = lazy(() => import('./components/exercises/PhysPruefungExercise').then((module) => ({ default: module.PhysPruefungExercise })));
+const PhysSpecializedExercise = lazy(() => import('./components/exercises/PhysSpecializedExercise').then((module) => ({ default: module.PhysSpecializedExercise })));
+const PhysInteractiveTools = lazy(() => import('./components/exercises/PhysInteractiveTools').then((module) => ({ default: module.PhysInteractiveTools })));
+const PhysQuiz = lazy(() => import('./components/exercises/PhysQuiz').then((module) => ({ default: module.PhysQuiz })));
+const TransExercise = lazy(() => import('./components/exercises/TransExercise').then((module) => ({ default: module.TransExercise })));
+const TransConceptBasics = lazy(() => import('./components/exercises/TransConceptBasics').then((module) => ({ default: module.TransConceptBasics })));
+const TransDragDropExercise = lazy(() => import('./components/exercises/TransDragDropExercise').then((module) => ({ default: module.TransDragDropExercise })));
+const TransComprehensiveExercise = lazy(() => import('./components/exercises/TransComprehensiveExercise').then((module) => ({ default: module.TransComprehensiveExercise })));
+const TransPraxisExercise = lazy(() => import('./components/exercises/TransPraxisExercise').then((module) => ({ default: module.TransPraxisExercise })));
+const TransPruefungExercise = lazy(() => import('./components/exercises/TransPruefungExercise').then((module) => ({ default: module.TransPruefungExercise })));
+const TransSpecializedExercise = lazy(() => import('./components/exercises/TransSpecializedExercise').then((module) => ({ default: module.TransSpecializedExercise })));
+const TransInteractiveTools = lazy(() => import('./components/exercises/TransInteractiveTools').then((module) => ({ default: module.TransInteractiveTools })));
+const TransQuiz = lazy(() => import('./components/exercises/TransQuiz').then((module) => ({ default: module.TransQuiz })));
+const SQLExercise = lazy(() => import('./components/exercises/SQLExercise').then((module) => ({ default: module.SQLExercise })));
+const ProgressiveLearningSystem = lazy(() => import('./components/ProgressiveLearningSystem').then((module) => ({ default: module.ProgressiveLearningSystem })));
+const AnomalyExercise = lazy(() => import('./components/exercises/AnomalyExercise').then((module) => ({ default: module.AnomalyExercise })));
+const FunctionalDependencyExercise = lazy(() => import('./components/exercises/FunctionalDependencyExercise').then((module) => ({ default: module.FunctionalDependencyExercise })));
+const AttributeClosureExercise = lazy(() => import('./components/exercises/AttributeClosureExercise').then((module) => ({ default: module.AttributeClosureExercise })));
+const NormalizationExercise = lazy(() => import('./components/exercises/NormalizationExercise').then((module) => ({ default: module.NormalizationExercise })));
+const DecompositionExercise = lazy(() => import('./components/exercises/DecompositionExercise').then((module) => ({ default: module.DecompositionExercise })));
+const TestPreparationMode = lazy(() => import('./components/TestPreparationMode').then((module) => ({ default: module.TestPreparationMode })));
+const ProgressiveDBS9LearningSystem = lazy(() => import('./components/ProgressiveDBS9LearningSystem').then((module) => ({ default: module.ProgressiveDBS9LearningSystem })));
+const QueryExecutionExercise = lazy(() => import('./components/exercises/QueryExecutionExercise').then((module) => ({ default: module.QueryExecutionExercise })));
+const LogicalOptimizationExercise = lazy(() => import('./components/exercises/LogicalOptimizationExercise').then((module) => ({ default: module.LogicalOptimizationExercise })));
+const JoinAlgorithmsExercise = lazy(() => import('./components/exercises/JoinAlgorithmsExercise').then((module) => ({ default: module.JoinAlgorithmsExercise })));
+const CostOptimizationExercise = lazy(() => import('./components/exercises/CostOptimizationExercise').then((module) => ({ default: module.CostOptimizationExercise })));
+const DBS9TestPreparationMode = lazy(() => import('./components/DBS9TestPreparationMode').then((module) => ({ default: module.DBS9TestPreparationMode })));
 
 function App() {
   const [currentPage, setCurrentPage] = useState('lernpfad');
@@ -365,37 +364,7 @@ function App() {
           break;
 
 
-      case 'pdfs':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-2">PDF-Dokumente</h1>
-            <p className="text-gray-600 mb-8">Durchsuche die Vorlesungsunterlagen und Tests.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pdfDocuments.map((doc) => (
-                <div
-                  key={doc.id}
-                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                  onClick={() => setCurrentPage(`pdf-${doc.id}`)}
-                >
-                  <h3 className="text-xl font-semibold mb-2">{doc.title}</h3>
-                  {doc.description && (
-                    <p className="text-gray-600 text-sm">{doc.description}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
       default:
-        // Handle PDF viewing
-        if (currentPage.startsWith('pdf-')) {
-          const pdfId = currentPage.replace('pdf-', '');
-          const document = pdfDocuments.find(doc => doc.id === pdfId);
-          if (document) {
-            return <PDFViewer document={document} />;
-          }
-        }
         break;
     }
 
@@ -412,7 +381,15 @@ function App() {
       <Navigation onNavigate={handleNavigate} activePage={currentPage} />
       <main className="flex-1 p-6 md:p-10">
         <div id="content-area">
-          {renderContent()}
+          <Suspense
+            fallback={(
+              <div className="flex min-h-64 items-center justify-center" role="status">
+                <p className="text-sm font-medium text-gray-600">Inhalt wird geladen …</p>
+              </div>
+            )}
+          >
+            {renderContent()}
+          </Suspense>
         </div>
       </main>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TreePine, Hash, Layers, Zap, Database, Target, Trophy, CheckCircle, XCircle, RotateCcw, Calculator, Play, Pause } from 'lucide-react';
+import { TreePine, Hash, Zap, Database, Target, Trophy, CheckCircle, XCircle, RotateCcw, Calculator, Play } from 'lucide-react';
 
 interface SpecializedExercise {
   id: string;

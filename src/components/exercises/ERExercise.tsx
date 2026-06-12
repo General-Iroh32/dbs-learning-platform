@@ -56,7 +56,7 @@ export const ERExercise: React.FC = () => {
 
   const checkExercise = () => {
     let correctCount = 0;
-    let totalCount = items.length;
+    const totalCount = items.length;
 
     Object.keys(dropZones).forEach(category => {
       dropZones[category].forEach(item => {

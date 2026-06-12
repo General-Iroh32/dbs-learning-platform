@@ -104,7 +104,7 @@ export const SQLExercise: React.FC = () => {
 
   const checkExercise = () => {
     let correctCount = 0;
-    let explanations: string[] = [];
+    const explanations: string[] = [];
 
     questions.forEach(q => {
       const selected = selectedAnswers[q.id];
@@ -116,7 +116,7 @@ export const SQLExercise: React.FC = () => {
       }
     });
 
-    setResult(explanations.join('\n\n'));
+    setResult(`${correctCount}/${questions.length} richtig\n\n${explanations.join('\n\n')}`);
   };
 
   const resetExercise = () => {

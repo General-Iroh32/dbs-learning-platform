@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Database, TreePine, Hash, Layers, Zap, Target, Trophy, BookOpen, CheckCircle, XCircle, ArrowRight, RefreshCw } from 'lucide-react';
+import { Target, Trophy, CheckCircle, XCircle, RefreshCw } from 'lucide-react';
 
 interface PhysExercise {
   id: string;
@@ -30,7 +30,7 @@ export const PhysComprehensiveExercise: React.FC = () => {
   const [showHint, setShowHint] = useState(false);
   const [userAnswer, setUserAnswer] = useState<any>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [, setShowExplanation] = useState(false);
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set());
 
   const exercises: PhysExercise[] = [
@@ -198,8 +198,8 @@ export const PhysComprehensiveExercise: React.FC = () => {
   ];
 
   const [currentExerciseData, setCurrentExerciseData] = useState<PhysExercise>(exercises[0]);
-  const [dragItems, setDragItems] = useState<DragItem[]>([]);
-  const [dropZones, setDropZones] = useState<{ [key: string]: DragItem[] }>({
+  const [, setDragItems] = useState<DragItem[]>([]);
+  const [, setDropZones] = useState<{ [key: string]: DragItem[] }>({
     'indexes': [],
     'structures': [],
     'optimizations': []
@@ -523,4 +523,3 @@ export const PhysComprehensiveExercise: React.FC = () => {
     </div>
   );
 };
-

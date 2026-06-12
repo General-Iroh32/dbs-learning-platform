@@ -2,14 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   Database, 
   CheckCircle, 
-  XCircle, 
-  Clock, 
-  AlertTriangle, 
-  BookOpen, 
-  Target,
+  Clock,
   Trophy,
-  RefreshCw,
-  ArrowRight,
   Play,
   Pause,
   RotateCcw
@@ -54,7 +48,6 @@ export const TransPruefungExercise: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes
   const [showResult, setShowResult] = useState(false);
   const [examResult, setExamResult] = useState<ExamResult | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
 
   const examQuestions: ExamQuestion[] = [
     // ACID Questions

@@ -245,7 +245,6 @@ export const JoinAlgorithmsExercise: React.FC = () => {
                   <h5 className="font-medium mb-2">Kostenvergleich:</h5>
                   <div className="space-y-1 text-sm">
                     {algorithms.map((alg) => {
-                      const selectedAlg = algorithms.find(a => a.id === selectedAlgorithm);
                       const isSelected = alg.id === selectedAlgorithm;
                       return (
                         <div key={alg.id} className={`p-2 rounded ${isSelected ? 'bg-blue-50' : ''}`}>

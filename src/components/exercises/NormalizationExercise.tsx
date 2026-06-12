@@ -1,17 +1,5 @@
 import React, { useState } from 'react';
 
-interface FD {
-  left: string;
-  right: string;
-}
-
-interface Relation {
-  name: string;
-  attributes: string[];
-  primaryKey: string[];
-  fds: FD[];
-}
-
 export const NormalizationExercise: React.FC = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [selectedNF, setSelectedNF] = useState<string | null>(null);

@@ -37,10 +37,3 @@ export interface ConceptCard {
   description: string;
   icon: string;
 }
-
-export interface PDFDocument {
-  id: string;
-  title: string;
-  filename: string;
-  description?: string;
-}

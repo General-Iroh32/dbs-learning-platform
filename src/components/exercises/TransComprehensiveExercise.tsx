@@ -4,16 +4,9 @@ import {
   CheckCircle, 
   XCircle, 
   ArrowRight, 
-  Trophy, 
-  BookOpen, 
-  Target,
+  Trophy,
   Clock,
-  AlertTriangle,
-  RefreshCw,
-  Lock,
-  Shield,
-  Activity,
-  Users
+  AlertTriangle
 } from 'lucide-react';
 
 interface TransExercise {
@@ -30,20 +23,6 @@ interface TransExercise {
   points: number;
   level: number;
   category: string;
-}
-
-interface Transaction {
-  id: string;
-  operations: string[];
-  startTime: number;
-  endTime?: number;
-  status: 'active' | 'committed' | 'aborted';
-}
-
-interface Lock {
-  type: 'shared' | 'exclusive';
-  resource: string;
-  transaction: string;
 }
 
 export const TransComprehensiveExercise: React.FC = () => {

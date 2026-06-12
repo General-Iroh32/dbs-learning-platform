@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, CheckCircle, XCircle, AlertTriangle, Database, Target, Trophy, TreePine, Hash, Layers, Zap } from 'lucide-react';
+import { Clock, CheckCircle, XCircle, Database, Trophy, TreePine, Hash, Layers, Zap } from 'lucide-react';
 
 interface PhysExamQuestion {
   id: string;

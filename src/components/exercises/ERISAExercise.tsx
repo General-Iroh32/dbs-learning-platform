@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GitBranch, CheckCircle, XCircle, AlertTriangle, BookOpen, Target, Users } from 'lucide-react';
+import { CheckCircle, XCircle, Target } from 'lucide-react';
 
 interface ISAExercise {
   id: string;

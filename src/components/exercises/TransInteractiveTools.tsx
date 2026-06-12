@@ -12,10 +12,8 @@ import {
   XCircle,
   ArrowRight,
   ArrowLeft,
-  Zap,
   Lock,
-  Users,
-  Activity
+  Users
 } from 'lucide-react';
 
 interface Transaction {
@@ -52,9 +50,8 @@ export const TransInteractiveTools: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [speed, setSpeed] = useState(1000); // milliseconds
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [locks, setLocks] = useState<Lock[]>([]);
-  const [deadlockDetection, setDeadlockDetection] = useState<DeadlockDetection | null>(null);
-  const [showDeadlock, setShowDeadlock] = useState(false);
+  const [, setLocks] = useState<Lock[]>([]);
+  const [, setDeadlockDetection] = useState<DeadlockDetection | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const tools = [

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, Link, Key, Users, GitBranch, RefreshCw, Network, CheckCircle, XCircle, ArrowRight, Trophy, BookOpen, Target } from 'lucide-react';
+import { Box, List, Link, CheckCircle, XCircle, Trophy, Target } from 'lucide-react';
 
 interface ERExercise {
   id: string;
@@ -24,17 +24,6 @@ interface DragDropItem {
   isDerived?: boolean;
 }
 
-interface CardinalityQuestion {
-  entity1: string;
-  entity2: string;
-  relationship: string;
-  correctCardinality: {
-    entity1: string;
-    entity2: string;
-  };
-  explanation: string;
-}
-
 export const ERComprehensiveExercise: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentExercise, setCurrentExercise] = useState(0);
@@ -42,7 +31,7 @@ export const ERComprehensiveExercise: React.FC = () => {
   const [showHint, setShowHint] = useState(false);
   const [userAnswer, setUserAnswer] = useState<any>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [, setShowExplanation] = useState(false);
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set());
 
   const exercises: ERExercise[] = [

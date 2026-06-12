@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TreePine, Hash, Layers, Zap, Database, Play, Pause, RotateCcw, Settings, Eye, EyeOff } from 'lucide-react';
+import { TreePine, Hash, Layers, Database, RotateCcw, Eye, EyeOff } from 'lucide-react';
 
 interface BTreeNode {
   id: string;
@@ -28,8 +28,6 @@ export const PhysInteractiveTools: React.FC = () => {
   const [hashTableSize, setHashTableSize] = useState(7);
   const [hashSlots, setHashSlots] = useState<HashSlot[]>([]);
   const [bloomFilter, setBloomFilter] = useState<BloomFilter>({ bits: Array(10).fill(false), hashFunctions: 3 });
-  const [animationSpeed, setAnimationSpeed] = useState(1000);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [showDetails, setShowDetails] = useState(true);
 
   // B+-Tree Operations
@@ -601,4 +599,3 @@ export const PhysInteractiveTools: React.FC = () => {
     </div>
   );
 };
-

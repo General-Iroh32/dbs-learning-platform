@@ -41,7 +41,7 @@ export const RAExercise: React.FC = () => {
 
   const checkExercise = () => {
     let correctCount = 0;
-    let totalCount = solution.length;
+    const totalCount = solution.length;
 
     dropZones.forEach((item, index) => {
       if (item === solution[index]) {
