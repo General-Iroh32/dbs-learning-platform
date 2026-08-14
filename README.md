@@ -1,111 +1,89 @@
-# DBS Lernplattform - TU Wien
+# DBS Lernplattform
 
-Eine vollständig programmierte interaktive Lernplattform für die **Datenbanksysteme VU (Hose)** an der TU Wien. Speziell entwickelt für die Vorbereitung auf den **1. Multiple Choice Test** und das Verständnis aller wichtigen DBS-Konzepte.
+Eine interaktive Single-Page-Anwendung zum Lernen zentraler Konzepte aus Datenbanksystemen. Sie verbindet kompakte Theorie, schrittweise Lernpfade, praktische Übungen und Quizfragen in einer responsiven Oberfläche.
 
-## 🎯 Ziel
+Die Anwendung ist ein unabhängiges Open-Source-Lernprojekt. Sie ist kein offizielles Angebot der TU Wien und wird weder von der Universität noch von Lehrveranstaltungsverantwortlichen betrieben oder bestätigt.
 
-Diese Plattform unterstützt Studenten der TU Wien bei der Vorbereitung auf die Datenbanksysteme VU von Prof. Hose durch:
-- **Strukturiertes Lernen** aller prüfungsrelevanten Themen
-- **Interaktive Übungen** für besseres Verständnis
-- **Quiz-System** zur Testvorbereitung
-- **Praktische Beispiele** aus der Vorlesung
+## Funktionsumfang
 
-## ✨ Features
+- Lernpfade für relationales Modell, ER-Modellierung und relationale Algebra
+- Übungen zu Normalisierung, physischem Datenbankentwurf und Transaktionen
+- SQL- und Anfrageoptimierungsaufgaben einschließlich Join-Algorithmen
+- Quizmodus mit unmittelbarem Feedback, Erklärungen und Ergebnisübersicht
+- Prüfungsvorbereitung mit Zeitlimit und zufälliger Fragenauswahl
+- Tastaturbedienbare Antwortoptionen und sichtbare Fokuszustände
+- Lazy Loading für umfangreiche Übungsmodule
+- Fehlergrenze mit nutzerfreundlichem Wiederherstellungszustand
 
-- **Interaktive Grundlagen**: Übersichtliche Darstellung der wichtigsten DBS-Konzepte
-- **Quiz-System**: Multiple-Choice-Fragen mit detaillierten Erklärungen für Testvorbereitung
-- **Drag & Drop Übungen**: Praktische Übungen für ER-Modellierung und Relationale Algebra
-- **PDF-Viewer**: Integrierte Anzeige von Vorlesungsunterlagen und Tests
-- **Responsive Design**: Optimiert für Desktop und Mobile
-- **Vollständig programmiert**: Keine externe Abhängigkeiten, alles selbst entwickelt
+## Technischer Überblick
 
-## 📚 Themen (Prüfungsrelevant)
+- React 19 und TypeScript
+- Vite 7 und Tailwind CSS
+- Vitest für Unit-Tests
+- ESLint mit React-Hooks- und Unused-Imports-Regeln
+- pnpm 11 mit reproduzierbarem Lockfile
+- Nginx-Container und Vercel-Konfiguration für SPA-Hosting
+- GitHub Actions für Linting, Typprüfung, Tests, Build und Container-Build
 
-- **Relationales Modell**: Domänen, Relationen, Tupel, Schlüssel
-- **ER-Modellierung**: Entitätstypen, Beziehungen, Kardinalitäten
-- **Relationale Algebra**: Alle Operatoren, Joins, Division
-- **Normalisierung**: 1NF, 2NF, 3NF, BCNF, Funktionale Abhängigkeiten
-- **Physischer Entwurf**: Dateiorganisation, Indexe, B+-Bäume, Hashing
-- **Transaktionen**: ACID, Schedules, Serialisierbarkeit
-- **SQL**: JOINs, Aggregationen, Subqueries
+Die Lerninhalte liegen als typisierte Datenmodule vor. Wiederverwendbare Komponenten rendern Theorie und Quizfragen; komplexere Übungen werden als separate Bundles erst beim Öffnen geladen. Details stehen in [docs/architecture.md](docs/architecture.md).
 
-## Technologie-Stack
+## Lokale Entwicklung
 
-- **Frontend**: React 19 + TypeScript
-- **Styling**: Tailwind CSS
-- **PDF-Viewer**: react-pdf
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Package Manager**: pnpm
+Voraussetzungen:
 
-## Installation
+- Node.js 22 oder neuer
+- pnpm 11.19.0; Corepack kann die im Projekt deklarierte Version aktivieren
 
 ```bash
-# Dependencies installieren
-pnpm install
-
-# Entwicklungsserver starten
+corepack enable
+pnpm install --frozen-lockfile
 pnpm run dev
+```
 
-# Build für Produktion
+Der Entwicklungsserver zeigt die lokale URL im Terminal an.
+
+## Qualitätsprüfung
+
+Alle Prüfungen gemeinsam ausführen:
+
+```bash
+pnpm run check
+```
+
+Einzelne Befehle:
+
+```bash
+pnpm run lint
+pnpm run typecheck
+pnpm run test
 pnpm run build
+pnpm run preview
 ```
 
-## Projektstruktur
+Pull Requests und Änderungen auf `main` durchlaufen dieselben Prüfungen in GitHub Actions. Das erzeugte `dist`-Verzeichnis wird dort zusätzlich als kurzlebiges Build-Artefakt bereitgestellt.
 
-```
-src/
-├── components/          # React-Komponenten
-│   ├── exercises/      # Übungs-Komponenten
-│   ├── Navigation.tsx  # Hauptnavigation
-│   ├── ConceptBasics.tsx # Grundlagen-Darstellung
-│   ├── Quiz.tsx        # Quiz-Komponente
-│   └── PDFViewer.tsx   # PDF-Viewer
-├── data/               # Daten und Konfiguration
-│   ├── conceptData.ts  # Grundlagen-Daten
-│   ├── quizData.ts     # Quiz-Fragen
-│   └── navigationData.ts # Navigation und PDFs
-├── types/              # TypeScript-Typen
-└── App.tsx            # Hauptkomponente
+## Container
+
+```bash
+docker build -t dbs-learning-platform .
+docker run --rm -p 8080:8080 dbs-learning-platform
 ```
 
-## 🚀 Verwendung
+Danach ist die Anwendung unter `http://localhost:8080` erreichbar. Der Container stellt unter `/healthz` einen Healthcheck bereit. Nginx liefert versionierte Assets mit langfristigem Cache aus und fällt bei Anwendungsrouten auf `index.html` zurück.
 
-1. **Navigation**: Verwende die Seitenleiste, um zwischen Themen zu wechseln
-2. **Grundlagen**: Lese die Konzeptkarten für jedes Thema (prüfungsrelevant!)
-3. **Quiz**: Teste dein Wissen mit interaktiven Multiple-Choice-Fragen
-4. **Übungen**: Praktiziere mit Drag & Drop-Übungen für ER-Modellierung und RA
-5. **PDFs**: Durchsuche die Vorlesungsunterlagen und Tests
-6. **Lernpfad**: Folge dem strukturierten Lernweg für optimale Testvorbereitung
+## Deployment
 
-## 🎓 Für TU Wien Studenten
+Das Repository enthält zwei unterstützte Wege:
 
-Diese Plattform ist speziell für die **Datenbanksysteme VU (Hose)** entwickelt und deckt alle wichtigen Themen für den **1. Multiple Choice Test** ab:
+- Ein statischer Vite-Build aus `dist`, beispielsweise auf Vercel
+- Das Multi-Stage-Dockerfile für jede OCI-kompatible Plattform
 
-- ✅ **Alle Vorlesungsinhalte** strukturiert aufbereitet
-- ✅ **Prüfungsrelevante Übungen** mit Lösungen
-- ✅ **Multiple Choice Fragen** zur Testvorbereitung
-- ✅ **Interaktive Beispiele** aus der Vorlesung
-- ✅ **PDF-Zugang** zu allen Unterlagen
+Beide Varianten setzen grundlegende Browser-Sicherheitsheader. Die Anwendung benötigt derzeit keine Laufzeit-Secrets und überträgt keine Lern- oder Quizdaten an einen Backend-Dienst.
 
-## 💻 Entwicklung
+## Mitwirken und Sicherheit
 
-Das Projekt verwendet moderne React-Patterns:
-- Functional Components mit Hooks
-- TypeScript für Typsicherheit
-- Komponentenbasierte Architektur
-- Wiederverwendbare UI-Komponenten
-- **Vollständig selbst programmiert** - keine externen Lernplattformen
+Hinweise zu Branches, Commits und Pull Requests stehen in [CONTRIBUTING.md](CONTRIBUTING.md). Sicherheitsprobleme bitte entsprechend [SECURITY.md](SECURITY.md) melden und nicht zuerst öffentlich beschreiben.
 
-## 📖 Lizenz
+## Lizenz
 
-Dieses Projekt steht unter der **MIT License** und ist für Bildungszwecke erstellt. Es steht allen TU Wien Studenten und der allgemeinen Öffentlichkeit zur Verfügung.
-
-**Lizenzdetails:** Siehe [LICENSE](LICENSE) Datei für vollständige Informationen.
-
-### 🎓 Bildungsnutzung
-
-- ✅ **Kostenlose Nutzung** für alle Studenten
-- ✅ **Modifikation erlaubt** für eigene Lernzwecke
-- ✅ **Weitergabe erlaubt** an Kommilitonen
-- ✅ **Kommerzielle Nutzung** nach MIT License möglich
+Veröffentlicht unter der [MIT-Lizenz](LICENSE). Lerninhalte können fachliche Fehler enthalten und ersetzen keine offiziellen Lehrunterlagen.
