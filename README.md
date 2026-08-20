@@ -32,7 +32,7 @@ Die Lerninhalte liegen als typisierte Datenmodule vor. Wiederverwendbare Kompone
 Voraussetzungen:
 
 - Node.js 22 oder neuer
-- pnpm 11.19.0; Corepack kann die im Projekt deklarierte Version aktivieren
+- pnpm 11.22.0; Corepack kann die im Projekt deklarierte Version aktivieren
 
 ```bash
 corepack enable
