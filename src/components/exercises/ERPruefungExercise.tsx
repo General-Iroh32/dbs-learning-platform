@@ -267,7 +267,7 @@ export const ERPruefungExercise: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (examStarted && timeLeft > 0 && !examFinished) {
       interval = setInterval(() => {
         setTimeLeft(prev => {

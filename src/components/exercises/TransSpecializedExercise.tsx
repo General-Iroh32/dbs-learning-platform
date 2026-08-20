@@ -302,7 +302,7 @@ export const TransSpecializedExercise: React.FC = () => {
   }, [selectedType, currentExercise]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isTimerActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(timeLeft - 1);

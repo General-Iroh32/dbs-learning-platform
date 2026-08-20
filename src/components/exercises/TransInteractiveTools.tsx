@@ -52,7 +52,7 @@ export const TransInteractiveTools: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [, setLocks] = useState<Lock[]>([]);
   const [, setDeadlockDetection] = useState<DeadlockDetection | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const tools = [
     { id: 'transaction-timeline', label: 'Transaktions-Timeline', icon: 'Clock' },
