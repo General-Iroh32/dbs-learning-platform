@@ -175,7 +175,7 @@ export const RAPruefungExercise: React.FC = () => {
   const maxPoints = totalPoints;
 
   React.useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (examStarted && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(timeLeft - 1);

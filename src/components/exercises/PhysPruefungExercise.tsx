@@ -317,7 +317,7 @@ export const PhysPruefungExercise: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (examStarted && timeLeft > 0 && !examFinished) {
       interval = setInterval(() => {
         setTimeLeft(prev => {
@@ -671,4 +671,3 @@ export const PhysPruefungExercise: React.FC = () => {
     </div>
   );
 };
-

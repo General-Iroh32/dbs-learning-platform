@@ -330,7 +330,7 @@ export const PhysQuiz: React.FC = () => {
   }, [quizMode]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (quizStarted && timeLeft && timeLeft > 0 && !quizFinished) {
       interval = setInterval(() => {
         setTimeLeft(prev => {
@@ -712,4 +712,3 @@ export const PhysQuiz: React.FC = () => {
     </div>
   );
 };
-
