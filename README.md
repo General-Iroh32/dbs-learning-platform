@@ -1,8 +1,14 @@
 # DBS Lernplattform
 
+[![Live](https://img.shields.io/badge/live_demo-open-111827?logo=vercel&logoColor=white)](https://dbs-learning-platform.vercel.app/)
+[![CI](https://github.com/General-Iroh32/dbs-learning-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/General-Iroh32/dbs-learning-platform/actions/workflows/ci.yml)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111827)](https://react.dev/)
+
 Eine interaktive Single-Page-Anwendung zum Lernen zentraler Konzepte aus Datenbanksystemen. Sie verbindet kompakte Theorie, schrittweise Lernpfade, praktische Übungen und Quizfragen in einer responsiven Oberfläche.
 
 Die Anwendung ist ein unabhängiges Open-Source-Lernprojekt. Sie ist kein offizielles Angebot der TU Wien und wird weder von der Universität noch von Lehrveranstaltungsverantwortlichen betrieben oder bestätigt.
+
+**[Lernplattform direkt ausprobieren →](https://dbs-learning-platform.vercel.app/)**
 
 ## Funktionsumfang
 
@@ -26,6 +32,17 @@ Die Anwendung ist ein unabhängiges Open-Source-Lernprojekt. Sie ist kein offizi
 - GitHub Actions für Linting, Typprüfung, Tests, Build und Container-Build
 
 Die Lerninhalte liegen als typisierte Datenmodule vor. Wiederverwendbare Komponenten rendern Theorie und Quizfragen; komplexere Übungen werden als separate Bundles erst beim Öffnen geladen. Details stehen in [docs/architecture.md](docs/architecture.md).
+
+```mermaid
+flowchart LR
+    Content[Typisierte Lernmodule] --> UI[React-Komponenten]
+    UI --> Paths[Lernpfade]
+    UI --> Exercises[Übungen]
+    UI --> Quiz[Quiz und Prüfung]
+    Paths --> Progress[(Lokaler Lernfortschritt)]
+    Exercises --> Progress
+    Quiz --> Progress
+```
 
 ## Lokale Entwicklung
 
